@@ -29,10 +29,11 @@
     <!-- End of Main Content -->
 
     <!-- Footer -->
-    <footer class="sticky-footer bg-white">
+    <footer class="sticky-footer bg-warning ">
         <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2021</span>
+            <div class="copyright text-center text-white my-auto">
+                <h6 class="text-center font-weight-bold">Copyright &copy; SMK Tunas Harapan</h6>
+                <h6 class="text-center text-white font-weight-bold">Design By Rahmadika S Setiawan, S.Kom</h6>
             </div>
         </div>
     </footer>

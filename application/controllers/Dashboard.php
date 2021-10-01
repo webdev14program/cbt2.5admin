@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
+        $isi['kelas'] = $this->Model_kelas->countKelas();
         $isi['content'] = 'tampilan_home';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
