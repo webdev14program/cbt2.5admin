@@ -61,8 +61,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">List Data Master</h6>
-                        <a class="collapse-item" href="buttons.html">Master Jurusan</a>
-                        <a class="collapse-item" href="cards.html">Master Kelas</a>
+                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/jurusan">Master Jurusan</a>
+                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/kelas">Master Kelas</a>
                         <a class="collapse-item" href="cards.html">Master Mapel</a>
                     </div>
                 </div>

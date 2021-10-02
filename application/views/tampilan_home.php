@@ -10,7 +10,7 @@
             <div class="card-body bg-success">
                 <div class="row">
                     <div class="col">
-                        <h3 class="text-white  font-italic font-weight-bold">0</h3>
+                        <h3 class="text-white  font-italic font-weight-bold"><?= $siswa ?></h3>
                         <h4 class=" text-white font-italic font-weight-bold">Peserta Ujian</h4>
                     </div>
 
@@ -49,7 +49,7 @@
             <div class="card-body bg-primary">
                 <div class="row">
                     <div class="col">
-                        <h3 class="text-white  font-italic font-weight-bold">0</h3>
+                        <h3 class="text-white  font-italic font-weight-bold"><?= $mapel ?></h3>
                         <h4 class="text-white  font-italic font-weight-bold">Mapel</h4>
                     </div>
 
@@ -70,7 +70,7 @@
                     <tbody>
                         <tr>
                             <td>Nama Sekolah </td>
-                            <td>: SMK Tunas Harapan</td>
+                            <td>: SMKS TUNAS HARAPAN</td>
                         </tr>
                         <tr>
                             <td>NPSN </td>
@@ -103,15 +103,15 @@
                     <tbody>
                         <tr>
                             <td>Versi Aplikasi </td>
-                            <td>: SPP V1.0</td>
+                            <td>: CBT 2.5</td>
                         </tr>
                         <tr>
                             <td>Versi PHP </td>
-                            <td>: PHP 7.3.23</td>
+                            <td>: PHP 7.4.22</td>
                         </tr>
                         <tr>
                             <td>Database </td>
-                            <td>: MySqli 5.0.12</td>
+                            <td>: MySqli 5.1.1</td>
                         </tr>
                         <tr>
                             <td>Web Server </td>
