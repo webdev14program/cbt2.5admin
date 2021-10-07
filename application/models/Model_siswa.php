@@ -44,14 +44,11 @@ class Model_siswa extends CI_Model
 
     public function dataSiswa()
     {
-        // $sql = "SELECT a_siswa.*,a_kelas.*,a_jurusan.*,a_kelas.kelas AS nama_kelas FROM `a_siswa`
-        //         INNER JOIN a_kelas
-        //         on a_siswa.kelas=a_kelas.id
-        //         INNER JOIN a_jurusan
-        //         ON a_siswa.jurusan=a_jurusan.kode";
-        $sql = "SELECT a_siswa.*,a_kelas.*,a_kelas.kelas AS nama_kelas FROM `a_siswa`
+        $sql = "SELECT *,a_kelas.kelas AS nama_kelas FROM `a_siswa`
                 INNER JOIN a_kelas
-                ON a_siswa.kelas=a_kelas.id;";
+                ON a_siswa.kelas=a_kelas.id
+                INNER JOIN a_jurusan
+                ON a_siswa.jurusan=a_jurusan.kode;";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

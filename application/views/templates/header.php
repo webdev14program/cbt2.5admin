@@ -18,6 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>assets/dashboard/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -39,7 +40,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="<?= base_url() ?>Dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -63,13 +64,13 @@
                         <h6 class="collapse-header">List Data Master</h6>
                         <a class="collapse-item" href="<?= base_url() ?>Dashboard/jurusan">Master Jurusan</a>
                         <a class="collapse-item" href="<?= base_url() ?>Dashboard/kelas">Master Kelas</a>
-                        <a class="collapse-item" href="cards.html">Master Mapel</a>
+                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/mata_pelajaran">Master Mapel</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                <a class="nav-link" href="<?= base_url() ?>Dashboard/peserta_ujian">
+                    <i class="fas fa-graduation-cap"></i>
                     <span>Peserta Ujian </span></a>
             </li>
             <li class="nav-item">

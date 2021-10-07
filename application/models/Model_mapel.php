@@ -44,8 +44,7 @@ class Model_mapel extends CI_Model
 
     public function dataMapel()
     {
-        $sql = "SELECT *  FROM `cbtonline_course`
-                WHERE  category>0;";
+        $sql = "SELECT * FROM `a_mapel`";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

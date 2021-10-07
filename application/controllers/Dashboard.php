@@ -34,4 +34,24 @@ class Dashboard extends CI_Controller
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
     }
+
+    public function mata_pelajaran()
+    {
+        $isi['mapel'] = $this->Model_mapel->dataMapel();
+
+        $isi['content'] = 'tampilan_mata_pelajaran';
+        $this->load->view('templates/header');
+        $this->load->view('tampilan_dashboard', $isi);
+        $this->load->view('templates/footer');
+    }
+
+    public function peserta_ujian()
+    {
+        $isi['siswa'] = $this->Model_siswa->dataSiswa();
+
+        $isi['content'] = 'tampilan_siswa';
+        $this->load->view('templates/header');
+        $this->load->view('tampilan_dashboard', $isi);
+        $this->load->view('templates/footer');
+    }
 }
