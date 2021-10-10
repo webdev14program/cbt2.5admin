@@ -57,8 +57,12 @@ class Dashboard extends CI_Controller
 
     public function bank_soal()
     {
+        // Drob Down
+        $isi['kelas'] = $this->Model_kelas->dataKelas();
+        $isi['mapel'] = $this->Model_mapel->dataMapel();
+
+        // List Data Bank Soal
         $isi['bankSoal'] = $this->Model_bankSoal->dataBankSoal();
-        $isi['bankSoal2'] = $this->Model_bankSoal->dataBankSoalrow();
 
         $isi['content'] = 'bank_soal/tampilan_bank_soal';
         $this->load->view('templates/header');

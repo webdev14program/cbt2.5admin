@@ -14,7 +14,6 @@
                             <tr>
                                 <th>NO</th>
                                 <th>ID Ujian</th>
-                                <th>Jenis Ujian</th>
                                 <th>Mapel Ujian</th>
                             </tr>
                         </thead>
@@ -26,7 +25,6 @@
                                 ?>
                                     <td class="text-center"><?= $no++ ?></td>
                                     <td class="text-center"><?= $row['id_mapel'] ?></td>
-                                    <td class="text-center text-uppercase font-weight-bold">UAS Ganjil 2021/2022</td>
                                     <td class="font-weight-bold "><?= $row['nama_mapel'] ?></td>
                             </tr>
                         <?php } ?>

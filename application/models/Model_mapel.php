@@ -44,7 +44,8 @@ class Model_mapel extends CI_Model
 
     public function dataMapel()
     {
-        $sql = "SELECT * FROM `a_mapel`";
+        $sql = "SELECT * FROM `a_mapel`
+        ORDER BY `a_mapel`.`nama_mapel`  ASC";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
