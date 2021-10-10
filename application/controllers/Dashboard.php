@@ -54,4 +54,15 @@ class Dashboard extends CI_Controller
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
     }
+
+    public function bank_soal()
+    {
+        $isi['bankSoal'] = $this->Model_bankSoal->dataBankSoal();
+        $isi['bankSoal2'] = $this->Model_bankSoal->dataBankSoalrow();
+
+        $isi['content'] = 'bank_soal/tampilan_bank_soal';
+        $this->load->view('templates/header');
+        $this->load->view('tampilan_dashboard', $isi);
+        $this->load->view('templates/footer');
+    }
 }

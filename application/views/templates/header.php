@@ -74,13 +74,13 @@
                     <span>Peserta Ujian </span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                <a class="nav-link" href="<?= base_url() ?>Dashboard/bank_soal">
+                    <i class="fas fa-graduation-cap"></i>
                     <span>Bank Soal</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-calendar-alt"></i>
                     <span>Jadwal Ujian</span></a>
             </li>
             <!-- Divider -->

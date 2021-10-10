@@ -44,7 +44,7 @@ class Model_siswa extends CI_Model
 
     public function dataSiswa()
     {
-        $sql = "SELECT *,a_kelas.kelas AS nama_kelas FROM `a_siswa`
+        $sql = "SELECT *,a_kelas.kelas AS nama_kelas,a_jurusan.jurusan AS nama_jurusan FROM `a_siswa`
                 INNER JOIN a_kelas
                 ON a_siswa.kelas=a_kelas.id
                 INNER JOIN a_jurusan
@@ -54,12 +54,6 @@ class Model_siswa extends CI_Model
     }
     public function header_akun_siswa($id_kelas)
     {
-        // $sql = "SELECT a_siswa.*,a_kelas.*,a_jurusan.*,a_kelas.kelas AS nama_kelas FROM `a_siswa`
-        //         INNER JOIN a_kelas
-        //         on a_siswa.kelas=a_kelas.id
-        //         INNER JOIN a_jurusan
-        //         ON a_siswa.jurusan=a_jurusan.kode
-        //         WHERE a_siswa.kelas='$id_kelas';";
         $sql = "SELECT *,a_kelas.kelas AS nama_kelas FROM `a_siswa`
                 INNER JOIN a_kelas
                 ON a_siswa.kelas=a_kelas.id
