@@ -15,6 +15,7 @@
                             <tr class="text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">ID bank soal</th>
+                                <th scope="col">ujian</th>
                                 <th scope="col">kelas</th>
                                 <th scope="col">nama mapel</th>
                                 <th scope="col">status</th>
@@ -29,6 +30,7 @@
                                 ?>
                                     <td><?php echo $no++; ?></td>
                                     <td class="text-center"><?= $row['id_bank_soal'] ?></td>
+                                    <td class="text-center"><?= $row['nama_ujian'] ?></td>
                                     <td class="text-center"><?= $row['kelas'] ?></td>
                                     <td><?= $row['nama_mapel'] ?></td>
                                     <td class="text-center font-weight-bold text-uppercase"><?= $row['status'] ?></td>
@@ -57,10 +59,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="<?= base_url() ?>Dashboard/simpan_bank_soal" method="post">
                     <div class="form-group">
                         <label>Jenis Ujian</label>
-                        <select class="form-control">
+                        <select class="form-control" name="ujian">
                             <OPtion class="bg-info text-white" disabled>PILIH JENIS UJIAN</OPtion>
                             <option>UJIAN TENGAH SEMESTER</option>
                             <option>UJIAN AKHIR SEMESTER</option>
@@ -70,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label>MAPEL</label>
-                        <select class="form-control">
+                        <select class="form-control" name="mapel">
                             <OPtion class="bg-info text-white" disabled>PILIH MAPEL</OPtion>
                             <?php foreach ($mapel as $row) { ?>
                                 <option value="<?= $row['id_mapel']; ?>"><?= $row['id_mapel']; ?> | <?= $row['nama_mapel']; ?> </option>
@@ -79,7 +81,7 @@
                     </div>
                     <div class="form-group">
                         <label>KELAS</label>
-                        <select class="form-control">
+                        <select class="form-control" name="kelas">
                             <OPtion class="bg-info text-white" disabled>PILIH KELAS</OPtion>
                             <?php foreach ($kelas as $row) { ?>
                                 <option value="<?= $row['id_kelas']; ?>"><?= $row['id_kelas']; ?> | <?= $row['kelas']; ?> </option>
@@ -88,7 +90,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div>

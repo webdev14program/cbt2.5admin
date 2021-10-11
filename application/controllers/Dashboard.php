@@ -69,4 +69,23 @@ class Dashboard extends CI_Controller
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
     }
+
+    public function simpan_bank_soal()
+    {
+        $randIDmapel = rand(1000000, 9999999);
+        $ujian = $this->input->post('ujian');
+        $mapel = $this->input->post('mapel');
+        $kelas = $this->input->post('kelas');
+
+        $data = array(
+            'id_bank_soal' => $randIDmapel,
+            'id_mapel' => $mapel,
+            'id_kelas' => $kelas,
+            'nama_ujian' => $ujian,
+            'status' => 'non aktif'
+        );
+
+        $this->db->insert('bank_soal', $data);
+        redirect('Dashboard/bank_soal');
+    }
 }
