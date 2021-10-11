@@ -37,6 +37,13 @@
                             <option>NON AKTIF</option>
                         </select>
                     </div>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload Soal</label>
+                            <input type="file" class="form-control-file">
+                        </div>
+                    </form>
                     <button type="submit" class="btn btn-primary text-uppercase">Ubah Bank Soal</button>
                 </form>
             </div>
