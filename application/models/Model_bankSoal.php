@@ -15,14 +15,14 @@ class Model_bankSoal extends CI_Model
         return $query->result_array();
     }
 
-    public function dataBankSoalrow()
+    public function findByIDBankSoal($id_bank_soal)
     {
         $sql = "SELECT * FROM `bank_soal`
                 INNER JOIN a_mapel
                 ON bank_soal.id_mapel=a_mapel.id_mapel
                 INNER JOIN a_kelas
-                ON bank_soal.id_kelas=a_kelas.id  
-                ORDER BY `a_kelas`.`kelas` ASC;";
+                ON bank_soal.id_kelas=a_kelas.id
+                WHERE id_bank_soal='$id_bank_soal';";
         $query = $this->db->query($sql);
         return $query->row_array();
     }

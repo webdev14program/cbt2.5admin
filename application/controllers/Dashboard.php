@@ -58,8 +58,8 @@ class Dashboard extends CI_Controller
     public function bank_soal()
     {
         // Drob Down
-        $isi['kelas'] = $this->Model_kelas->dataKelas();
-        $isi['mapel'] = $this->Model_mapel->dataMapel();
+        $isi['kelas'] = $this->Model_kelas->dataKelasTKJ();
+        $isi['mapel'] = $this->Model_mapel->dataMapelTKJ();
 
         // List Data Bank Soal
         $isi['bankSoal'] = $this->Model_bankSoal->dataBankSoal();
@@ -86,6 +86,45 @@ class Dashboard extends CI_Controller
         );
 
         $this->db->insert('bank_soal', $data);
+
+        $this->session->set_flashdata('info', 'BANK DATA BERHASIL DI TAMBAH');
+        redirect('Dashboard/bank_soal');
+    }
+
+    public function detail_banksoal($id_bank_soal)
+    {
+        $isi['mapel'] = $this->Model_bankSoal->findByIDBankSoal($id_bank_soal);
+        $isi['content'] = 'bank_soal/tampilan_detail_bank_soal';
+        $this->load->view('templates/header');
+        $this->load->view('tampilan_dashboard', $isi);
+        $this->load->view('templates/footer');
+    }
+
+    public function simpan_edit_bank_soal()
+    {
+        $id_mapel = $this->input->post('id_mapel');
+        $id_kelas = $this->input->post('id_kelas');
+        $status = $this->input->post('status');
+        $ujian = $this->input->post('ujian');
+
+        $data = array(
+            'id_mapel' => $id_mapel,
+            'id_kelas' => $id_kelas,
+            'nama_ujian' => $ujian,
+            'status' => $status
+        );
+
+        $this->db->where('id_bank_soal', $this->input->post('id_bank_soal'));
+        $this->db->update('bank_soal', $data);
+        redirect('Dashboard/bank_soal');
+    }
+
+    public function hapus_bank_soal($id_bank_soal)
+    {
+        $this->db->where('id_bank_soal', $id_bank_soal);
+        $this->db->delete('bank_soal');
+
+        $this->session->set_flashdata('info', 'BANK DATA BERHASIL DI HAPUS DENGAN ID : ' . $id_bank_soal);
         redirect('Dashboard/bank_soal');
     }
 }

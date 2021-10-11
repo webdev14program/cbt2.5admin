@@ -2,10 +2,25 @@
     <h4 class="text-center font-weight-bold text-uppercase">bank soal</h4>
 </div>
 
-<button type="button" class="btn btn-primary text-uppercase font-weight-bold" data-toggle="modal" data-target="#exampleModal">
+
+
+<button type="button" class="btn btn-primary text-uppercase font-weight-bold mb-3" data-toggle="modal" data-target="#exampleModal">
     tambah bank soal
 </button>
-<div class="row mt-2">
+<?php if ($this->session->flashdata('info')) : ?>
+    <div class="row">
+        <div class="col-md">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?= $this->session->flashdata('info'); ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+<?php endif; ?>
+<div class="row mt-3">
     <div class="col-md">
         <div class="card">
             <div class="card-body">
@@ -19,7 +34,9 @@
                                 <th scope="col">kelas</th>
                                 <th scope="col">nama mapel</th>
                                 <th scope="col">status</th>
-                                <th scope="col">upload soal</th>
+                                <th scope="col">aksi
+
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,7 +54,10 @@
                                     <td>
                                         <h5 class="text-center">
                                             <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard/detail_banksoal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-upload"></i> upload</a>
+                                            <a class="btn btn-primary btn-sm  text-uppercase" href="#"><i class="fas fa-search"></i> detail</a>
+                                            <a class="btn btn-danger btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard/hapus_bank_soal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-trash"></i> remove</a>
                                         </h5>
+
                                     </td>
                             </tr>
                         <?php } ?>

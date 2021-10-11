@@ -60,8 +60,9 @@ class Model_mapel extends CI_Model
 
     public function dataMapelBDP()
     {
-        $sql = "SELECT * FROM `cbtonline_course`
-                WHERE format='singleactivity' AND fullname LIKE '%BDP%'";
+        $sql = "SELECT * FROM `a_mapel` 
+                WHERE a_mapel.nama_mapel LIKE '%bdp%'
+                ORDER BY `nama_mapel`  ASC;";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -76,8 +77,9 @@ class Model_mapel extends CI_Model
 
     public function dataMapelTKJ()
     {
-        $sql = "SELECT * FROM `cbtonline_course`
-                WHERE format='singleactivity' AND fullname LIKE '%TKJ%'";
+        $sql = "SELECT * FROM `a_mapel` 
+                WHERE a_mapel.nama_mapel LIKE '%tkj%'
+                ORDER BY `nama_mapel`  ASC;";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
