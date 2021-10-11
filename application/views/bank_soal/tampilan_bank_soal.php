@@ -30,13 +30,13 @@
                                 ?>
                                     <td><?php echo $no++; ?></td>
                                     <td class="text-center"><?= $row['id_bank_soal'] ?></td>
-                                    <td class="text-center"><?= $row['nama_ujian'] ?></td>
+                                    <td><?= $row['nama_ujian'] ?></td>
                                     <td class="text-center"><?= $row['kelas'] ?></td>
                                     <td><?= $row['nama_mapel'] ?></td>
                                     <td class="text-center font-weight-bold text-uppercase"><?= $row['status'] ?></td>
                                     <td>
                                         <h5 class="text-center">
-                                            <a class="btn btn-success btn-sm  text-uppercase" href="#"><i class="fas fa-upload"></i> upload</a>
+                                            <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard/detail_banksoal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-upload"></i> upload</a>
                                         </h5>
                                     </td>
                             </tr>
