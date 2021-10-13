@@ -3,7 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Model_bankSoal extends CI_Model
 {
-    public function dataBankSoal()
+    public function countBankSoal()
+    {
+        $sql = "SELECT COUNT(*) AS bank_soal FROM `bank_soal`
+                WHERE bank_soal.status='AKTIF';";
+        $query = $this->db->query($sql);
+        return $query->row()->bank_soal;
+    }
+
+    function dataBankSoal()
     {
         $sql = "SELECT * FROM `bank_soal`
                 INNER JOIN a_mapel

@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller
         $isi['siswa'] = $this->Model_siswa->countSiswa();
         $isi['kelas'] = $this->Model_kelas->countKelas();
         $isi['mapel'] = $this->Model_mapel->countMapel();
+        $isi['bank_soal'] = $this->Model_bankSoal->countBankSoal();
         $isi['content'] = 'tampilan_home';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
