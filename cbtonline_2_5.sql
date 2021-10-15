@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Okt 2021 pada 00.10
+-- Waktu pembuatan: 15 Okt 2021 pada 17.11
 -- Versi server: 10.4.20-MariaDB
 -- Versi PHP: 7.4.22
 
@@ -1534,7 +1534,7 @@ CREATE TABLE `bank_soal` (
   `id_mapel` int(18) NOT NULL,
   `id_kelas` int(11) NOT NULL,
   `nama_ujian` varchar(128) NOT NULL,
-  `status` enum('aktif','non aktif','','') NOT NULL,
+  `status` enum('AKTIF','NON AKTIF','','') NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1543,8 +1543,10 @@ CREATE TABLE `bank_soal` (
 --
 
 INSERT INTO `bank_soal` (`id_bank_soal`, `id_mapel`, `id_kelas`, `nama_ujian`, `status`, `time`) VALUES
-(31165, 104177, 119717, 'UJIAN AKHIR SEMESTER', 'non aktif', '2021-10-10 13:43:52'),
-(88484, 104181, 120675, 'UJIAN AKHIR SEMESTER', 'non aktif', '2021-10-10 14:40:39');
+(1353087, 641429, 118862, 'ULANGAN HARIAN', 'NON AKTIF', '2021-10-11 14:36:18'),
+(5953404, 209430, 118862, 'UJIAN TENGAH SEMESTER', 'NON AKTIF', '2021-10-12 13:59:09'),
+(7631859, 881416, 117204, 'ULANGAN HARIAN', 'NON AKTIF', '2021-10-11 14:36:08'),
+(7972011, 168403, 116953, 'ULANGAN HARIAN', 'NON AKTIF', '2021-10-11 14:35:30');
 
 --
 -- Indexes for dumped tables
@@ -1612,7 +1614,7 @@ ALTER TABLE `a_kelas`
 -- AUTO_INCREMENT untuk tabel `bank_soal`
 --
 ALTER TABLE `bank_soal`
-  MODIFY `id_bank_soal` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88485;
+  MODIFY `id_bank_soal` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9974140;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
