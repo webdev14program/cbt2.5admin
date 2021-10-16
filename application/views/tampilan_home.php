@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card rounded">
     <div class="card-body bg-primary">
         <h4 class="text-white text-uppercase font-weight-bold">cbt 2.5 smk tunas harapan (admin utama)</h4>
     </div>

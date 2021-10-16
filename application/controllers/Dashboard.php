@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Dashboard extends CI_Controller
 {
 
+
     public function index()
     {
         $isi['siswa'] = $this->Model_siswa->countSiswa();
@@ -24,6 +25,32 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
+    }
+
+    public function upload_jurusan()
+    {
+        $this->load->library('excel');
+        if (isset($_FILES["file"]["name"])) {
+            $path = $_FILES["file"]["tmp_name"];
+            $object = PHPExcel_IOFactory::load($path);
+            foreach ($object->getWorksheetIterator() as $worksheet) {
+                $highestRow = $worksheet->getHighestRow();
+                $highestColumn = $worksheet->getHighestColumn();
+                for ($row = 2; $row <= $highestRow; $row++) {
+                    $id = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $kode = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $jurusan = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $data[] = array(
+                        'id'        =>    $id,
+                        'kode'      =>    $kode,
+                        'jurusan'   => $jurusan
+                    );
+                }
+            }
+            // $this->Daerah_m->insertimport($data);
+            $this->db->insert_batch('a_jurusan', $data);
+            redirect('Dashboard/jurusan');
+        }
     }
 
     public function kelas()
