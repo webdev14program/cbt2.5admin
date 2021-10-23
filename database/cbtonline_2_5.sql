@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Okt 2021 pada 17.11
+-- Waktu pembuatan: 23 Okt 2021 pada 16.28
 -- Versi server: 10.4.20-MariaDB
 -- Versi PHP: 7.4.22
 
@@ -63,9 +63,9 @@ CREATE TABLE `a_jurusan` (
 --
 
 INSERT INTO `a_jurusan` (`id`, `kode`, `jurusan`) VALUES
-(101, 'AKL', 'AKUTANSI DAN KEUANGAN LEMBAGA'),
-(202, 'BDP', 'BISNIS DARING DAN PEMASARAN'),
-(303, 'OTKP', 'OTOMATISASI DAN TATA KELOLA PERKANTORAN'),
+(101, 'AKL', 'AKUTANSI KEUANGAN LEMBAGA'),
+(202, 'BDP', 'BISNIS DARING PEMASARAN'),
+(303, 'OTKP', 'OTOMATISASI TATA KELOLA PERKANTORAN'),
 (404, 'TKJ', 'TEKNIK KOMPUTER DAN JARINGAN');
 
 -- --------------------------------------------------------
@@ -1602,7 +1602,7 @@ ALTER TABLE `auth`
 -- AUTO_INCREMENT untuk tabel `a_jurusan`
 --
 ALTER TABLE `a_jurusan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=405;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=429;
 
 --
 -- AUTO_INCREMENT untuk tabel `a_kelas`
