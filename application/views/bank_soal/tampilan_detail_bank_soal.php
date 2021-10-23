@@ -13,21 +13,15 @@
                     <input type="text" class="form-control" value="<?= $mapel['id_kelas'] ?>" name="id_kelas" hidden>
                     <div class="form-group">
                         <label>Jenis Ujian</label>
-                        <select class="form-control" name="ujian">
-                            <OPtion class="bg-info text-white" disabled>PILIH JENIS UJIAN</OPtion>
-                            <option>UJIAN TENGAH SEMESTER</option>
-                            <option>UJIAN AKHIR SEMESTER</option>
-                            <option>UJIAN KENAIKAN KELAS</option>
-                            <option>ULANGAN HARIAN</option>
-                        </select>
+                        <input type="text" class="form-control" value="<?= $mapel['nama_ujian'] ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama Mapel</label>
-                        <input type="text" class="form-control" value="<?= $mapel['nama_mapel'] ?>" disabled>
+                        <input type="text" class="form-control" value="<?= $mapel['nama_mapel'] ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama Kelas</label>
-                        <input type="text" class="form-control" value="<?= $mapel['kelas'] ?>" disabled>
+                        <input type="text" class="form-control" value="<?= $mapel['kelas'] ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Status</label>

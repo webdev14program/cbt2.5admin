@@ -1,9 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+require_once APPPATH . 'third_party/spout/src/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+
 class Dashboard extends CI_Controller
 {
-
+    function __construct()
+    {
+        parent::__construct();
+        //load model 
+        $this->load->model('Model_jurusan');
+    }
 
     public function index()
     {
@@ -21,35 +30,56 @@ class Dashboard extends CI_Controller
     {
         $isi['jurusan'] = $this->Model_jurusan->dataJurusan();
 
-        $isi['content'] = 'tampilan_jurusan';
+        $isi['content'] = 'Jurusan/tampilan_jurusan';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
     }
 
+
+
     public function upload_jurusan()
     {
-        $this->load->library('excel');
-        if (isset($_FILES["file"]["name"])) {
-            $path = $_FILES["file"]["tmp_name"];
-            $object = PHPExcel_IOFactory::load($path);
-            foreach ($object->getWorksheetIterator() as $worksheet) {
-                $highestRow = $worksheet->getHighestRow();
-                $highestColumn = $worksheet->getHighestColumn();
-                for ($row = 2; $row <= $highestRow; $row++) {
-                    $id = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-                    $kode = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                    $jurusan = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-                    $data[] = array(
-                        'id'        =>    $id,
-                        'kode'      =>    $kode,
-                        'jurusan'   => $jurusan
-                    );
+        if ($this->input->post('submit', TRUE) == 'upload') {
+            $config['upload_path']      = './temp_doc_jurusan/';
+            $config['allowed_types']    = 'xlsx|xls';
+            $config['file_name']        = 'doc' . time();
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('excel')) {
+                $file   = $this->upload->data();
+
+                $reader = ReaderEntityFactory::createXLSXReader();
+                $reader->open('temp_doc_jurusan/' . $file['file_name']);
+
+
+                foreach ($reader->getSheetIterator() as $sheet) {
+                    $numRow = 1;
+                    $save   = array();
+                    foreach ($sheet->getRowIterator() as $row) {
+
+                        if ($numRow > 1) {
+
+                            $cells = $row->getCells();
+
+                            $data = array(
+                                'id'              => $cells[0],
+                                'kode'     => $cells[1],
+                                'jurusan'            => $cells[2]
+                            );
+                            array_push($save, $data);
+                        }
+                        $numRow++;
+                    }
+                    $this->Model_jurusan->simpan($save);
+                    $reader->close();
+                    unlink('temp_doc_jurusan/' . $file['file_name']);
+                    redirect('Dashboard/jurusan');
                 }
+            } else {
+                echo "Error :" . $this->upload->display_errors();
             }
-            // $this->Daerah_m->insertimport($data);
-            $this->db->insert_batch('a_jurusan', $data);
-            redirect('Dashboard/jurusan');
         }
     }
 

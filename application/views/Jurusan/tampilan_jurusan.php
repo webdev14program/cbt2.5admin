@@ -6,6 +6,7 @@
     <div class="col-md">
         <div class="card">
             <div class="card-body">
+                <!-- <a class="btn btn-success btn-sm" href="<?= base_url() ?>Dashboard/tambah_jurusan"><i class="fas fa-plus-square"></i> Tambah Jurusan</a> -->
                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-plus-square"></i> Tambah Jurusan
                 </button>
@@ -73,15 +74,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url() ?>Dashboard/upload_jurusan" method="POST" enctype="multipart/form-data">
+                <!-- <form action="<?= base_url() ?>Dashboard/upload_jurusan" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input type="file" class="form-control-file" name="file" required accept=".xls, .xlsx">
+                        <input type="file" name="excel" class="form-control-file" name="file" required accept=".xlsx">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="submit" name="submit" value="upload" class="btn btn-primary">Upload</button>
                     </div>
-                </form>
+                </form> -->
+
+                <?= form_open_multipart('Dashboard/upload_jurusan'); ?>
+                <div class="form-group">
+                    <input type="file" name="excel" class="form-control-file" name="file" required accept=".xlsx">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" value="upload" class="btn btn-primary">Upload</button>
+                </div>
+                <?= form_close(); ?>
             </div>
         </div>
     </div>
