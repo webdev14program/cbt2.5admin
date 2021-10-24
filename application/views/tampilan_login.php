@@ -42,7 +42,9 @@
                 <form method="POST" action="<?= base_url() ?>Auth/proses_login" class="login100-form validate-form mt-4">
                     <span class="login100-form-title p-b-59 text-center text-uppercase">
                         CBT smk tunas harapan jakarta barat
+                        <h4 class="text-success text-uppercase text-center font-weight-bold">RELEASE CANDIDATE 1.0</h4>
                     </span>
+
                     <?= $this->session->flashdata('pesan'); ?>
                     <div class="wrap-input100 validate-input" data-validate="Name is required">
                         <span class="label-input100">Username</span>
