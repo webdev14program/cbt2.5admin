@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller
     {
         $isi['jurusan'] = $this->Model_jurusan->dataJurusan();
 
-        $isi['content'] = 'Jurusan/tampilan_jurusan';
+        $isi['content'] = 'tampilan_jurusan';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
@@ -184,5 +184,16 @@ class Dashboard extends CI_Controller
 
         $this->session->set_flashdata('info', 'BANK DATA BERHASIL DI HAPUS DENGAN ID : ' . $id_bank_soal);
         redirect('Dashboard/bank_soal');
+    }
+
+    public function akun_peserta()
+    {
+
+        $isi['akun_peserta'] = $this->Model_siswa->dataAkunPeserta();
+
+        $isi['content'] = 'Ujian/tampilan_akun_peserta';
+        $this->load->view('templates/header');
+        $this->load->view('tampilan_dashboard', $isi);
+        $this->load->view('templates/footer');
     }
 }

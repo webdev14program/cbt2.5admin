@@ -118,4 +118,16 @@ class Model_siswa extends CI_Model
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+    public function dataAkunPeserta()
+    {
+        $sql = "SELECT a_kelas.id AS id_kelas,a_kelas.kelas AS nama_kelas,a_jurusan.jurusan AS nama_jurusan,a_jurusan.*,a_siswa.*,a_kelas.*,COUNT(a_siswa.nama_siswa) AS jumlah_siswa FROM `a_siswa`
+                INNER JOIN a_kelas
+                ON a_siswa.kelas=a_kelas.id
+                INNER JOIN a_jurusan
+                ON a_kelas.kode=a_jurusan.kode
+                GROUP BY nama_kelas;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
 }
