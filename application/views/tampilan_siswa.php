@@ -1,7 +1,36 @@
 <div class="alert alert-success" role="alert">
     <h4 class="text-center font-weight-bold">Siswa</h4>
 </div>
+<div class="row">
+    <div class="col-md">
+        <div class="card">
+            <div class="card-body">
+                <!-- <a class="btn btn-success btn-sm" href="<?= base_url() ?>Dashboard/tambah_jurusan"><i class="fas fa-plus-square"></i> Tambah Jurusan</a> -->
+                <button type="button" class="btn btn-success btn-sm text-uppercase" data-toggle="modal" data-target="#tambahSiswa">
+                    <i class="fas fa-plus-square"></i> Tambah Siswa
+                </button>
+                <button type="button" class="btn btn-primary btn-sm text-uppercase" data-toggle="modal" data-target="#uploadSiswa">
+                    <i class="fas fa-upload"></i> Upload Siswa
+                </button>
+                <a class="btn btn-danger btn-sm text-uppercase" href="<?= base_url() ?>Dashboard/hapus_all_peserta_ujian"><i class="fas fa-trash-alt"></i> Hapus Semua Siswa</a>
 
+            </div>
+        </div>
+    </div>
+</div>
+<?php if ($this->session->flashdata('info')) : ?>
+    <div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><?= $this->session->flashdata('info'); ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+<?php endif; ?>
 <div class="row mb-2 mt-2">
     <div class="col-md">
         <div class="card">
@@ -35,6 +64,37 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="tambahSiswa" tabindex="-1" aria-labelledby="tambahSiswa" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title text-uppercase font-weight-bold" id="exampleModalLabel">Tambah Siswa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
     </div>

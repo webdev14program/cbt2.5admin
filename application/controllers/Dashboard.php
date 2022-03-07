@@ -113,6 +113,13 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function hapus_all_peserta_ujian()
+    {
+        $this->db->empty_table('a_siswa');
+        $this->session->set_flashdata('info', 'PESERTA UJIAN BERHASIL DI HAPUS');
+        redirect('Dashboard/peserta_ujian');
+    }
+
     public function bank_soal()
     {
         // Drob Down
