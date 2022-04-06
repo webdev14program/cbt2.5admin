@@ -44,8 +44,9 @@ class Model_mapel extends CI_Model
 
     public function dataMapel()
     {
-        $sql = "SELECT * FROM `a_mapel`
-        ORDER BY `a_mapel`.`nama_mapel`  ASC";
+        $sql = "SELECT a_mapel.*,a_jurusan.jurusan AS nama_jurusan FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode;";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -77,10 +78,20 @@ class Model_mapel extends CI_Model
 
     public function dataMapelTKJ()
     {
-        $sql = "SELECT * FROM `a_mapel` 
-                WHERE a_mapel.nama_mapel LIKE '%tkj%'
-                ORDER BY `nama_mapel`  ASC;";
+        $sql = "SELECT a_mapel.*,a_jurusan.jurusan AS nama_jurusan FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_mapel.jurusan='TKJ';";
         $query = $this->db->query($sql);
         return $query->result_array();
+    }
+
+    function simpan($data = array())
+    {
+        $jumlah = count($data);
+
+        if ($jumlah > 0) {
+            $this->db->insert_batch('a_mapel', $data);
+        }
     }
 }

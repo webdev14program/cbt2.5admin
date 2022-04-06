@@ -21,7 +21,8 @@
 
 <!-- Page level custom scripts -->
 <script src="<?= base_url() ?>assets/dashboard/js/demo/datatables-demo.js"></script>
-
+<!-- SweetAlert2 -->
+<script src="<?= base_url() ?>assets/js/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

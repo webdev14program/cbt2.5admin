@@ -2,24 +2,17 @@
     <h4 class="text-center font-weight-bold text-uppercase">bank soal</h4>
 </div>
 
-
-
-<button type="button" class="btn btn-primary text-uppercase font-weight-bold mb-3" data-toggle="modal" data-target="#exampleModal">
-    tambah bank soal
-</button>
-<?php if ($this->session->flashdata('info')) : ?>
-    <div class="row">
-        <div class="col-md">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong><?= $this->session->flashdata('info'); ?></strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-        </div>
+<div class="card">
+    <div class="card-body">
+        <button type="button" class="btn btn-success btn-sm text-uppercase" data-toggle="modal" data-target="#tambahBankSoal">
+            <i class="fas fa-plus-square"></i> Tambah Bank Soal
+        </button>
+        <a class="btn btn-danger btn-sm text-uppercase" href="<?= base_url() ?>Dashboard/hapus_all_bank_soal"><i class="fas fa-trash-alt"></i> Hapus Semua Bank Soal</a>
     </div>
-<?php endif; ?>
+</div>
+
+<?= $this->session->flashdata('info') ?>
+
 <div class="row mt-3">
     <div class="col-md">
         <div class="card">
@@ -69,7 +62,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="tambahBankSoal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -95,7 +88,7 @@
                         <select class="form-control" name="mapel">
                             <OPtion class="bg-info text-white" disabled>PILIH MAPEL</OPtion>
                             <?php foreach ($mapel as $row) { ?>
-                                <option value="<?= $row['id_mapel']; ?>"><?= $row['id_mapel']; ?> | <?= $row['nama_mapel']; ?> </option>
+                                <option value="<?= $row['id_mapel']; ?>"><?= $row['id_mapel']; ?> | <?= $row['jurusan']; ?> | <?= $row['nama_mapel']; ?> </option>
                             <?php } ?>
                         </select>
                     </div>

@@ -7,13 +7,27 @@
         <div class="card">
             <div class="card-body">
                 <!-- <a class="btn btn-success btn-sm" href="<?= base_url() ?>Dashboard/tambah_jurusan"><i class="fas fa-plus-square"></i> Tambah Jurusan</a> -->
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-success btn-sm text-uppercase font-weight-bold" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-plus-square"></i> Tambah Jurusan
                 </button>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
+
+<?php if ($this->session->flashdata('pesan')) : ?>
+    <div class="row mt-2">
+        <div class="col-md">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?= $this->session->flashdata('pesan'); ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+<?php endif; ?>
 <div class="row mt-3">
     <div class="col-md">
         <div class="card">
@@ -74,16 +88,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- <form action="<?= base_url() ?>Dashboard/upload_jurusan" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input type="file" name="excel" class="form-control-file" name="file" required accept=".xlsx">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="submit" value="upload" class="btn btn-primary">Upload</button>
-                    </div>
-                </form> -->
-
                 <?= form_open_multipart('Dashboard/upload_jurusan'); ?>
                 <div class="form-group">
                     <input type="file" name="excel" class="form-control-file" name="file" required accept=".xlsx">

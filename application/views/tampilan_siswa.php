@@ -18,7 +18,10 @@
         </div>
     </div>
 </div>
-<?php if ($this->session->flashdata('info')) : ?>
+
+<?= $this->session->flashdata('info') ?>
+
+<!-- <?php if ($this->session->flashdata('info')) : ?>
     <div class="row">
         <div class="col-md mt-2">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -30,7 +33,7 @@
 
         </div>
     </div>
-<?php endif; ?>
+<?php endif; ?> -->
 <div class="row mb-2 mt-2">
     <div class="col-md">
         <div class="card">
@@ -95,6 +98,29 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="uploadSiswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Peserta Ujian</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?= form_open_multipart('Dashboard/upload_peserta_ujian'); ?>
+                <div class="form-group">
+                    <input type="file" name="excel" class="form-control-file" name="file" required accept=".xlsx">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" value="upload" class="btn btn-primary">Upload</button>
+                </div>
+                <?= form_close(); ?>
             </div>
         </div>
     </div>

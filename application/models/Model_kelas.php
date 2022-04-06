@@ -47,4 +47,13 @@ class Model_kelas extends CI_Model
         $query = $this->db->query($sql);
         return $query->row_array();
     }
+
+    function simpan($data = array())
+    {
+        $jumlah = count($data);
+
+        if ($jumlah > 0) {
+            $this->db->insert_batch('a_kelas', $data);
+        }
+    }
 }
