@@ -106,33 +106,5 @@
             </div>
         </div>
     </div>
-    <div class="col-md mt-2">
-        <div class="card">
-            <div class="card-header bg-primary">
-                <h5 class="font-weight-bolder text-white" style="text-transform: uppercase;">Detail Aplikasi</h5>
-            </div>
-            <div class="card-body">
-                <table class="table table-border">
-                    <tbody>
-                        <tr>
-                            <td>Versi Aplikasi </td>
-                            <td>: CBT 2.5</td>
-                        </tr>
-                        <tr>
-                            <td>Versi PHP </td>
-                            <td>: PHP 7.4.22</td>
-                        </tr>
-                        <tr>
-                            <td>Database </td>
-                            <td>: MySqli 5.1.1</td>
-                        </tr>
-                        <tr>
-                            <td>Web Server </td>
-                            <td>: Apache</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+
 </div>

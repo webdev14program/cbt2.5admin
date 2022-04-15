@@ -7,26 +7,17 @@
             <div class="card-body">
                 <!-- <a class="btn btn-success btn-sm" href="<?= base_url() ?>Dashboard/tambah_jurusan"><i class="fas fa-plus-square"></i> Tambah Jurusan</a> -->
                 <button type="button" class="btn btn-success btn-sm text-uppercase font-weight-bold" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fas fa-plus-square"></i> Tambah Kelas
+                    <i class="fas fa-plus-square"></i> Upload Kelas
                 </button>
                 <a class="btn btn-danger btn-sm text-uppercase font-weight-bold" href="<?= base_url() ?>Dashboard/hapus_all_kelas"><i class="fas fa-trash"></i> Hapus Kelas</a>
             </div>
         </div>
     </div>
 </div>
-<?php if ($this->session->flashdata('pesan')) : ?>
-    <div class="row mt-2">
-        <div class="col-md">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong><?= $this->session->flashdata('pesan'); ?></strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
 
-        </div>
-    </div>
-<?php endif; ?>
+<?= $this->session->flashdata('pesan') ?>
+
+
 <div class="row mt-2">
     <div class="col-md">
         <div class="card">

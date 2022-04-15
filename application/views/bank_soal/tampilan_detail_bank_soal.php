@@ -13,7 +13,7 @@
                     <input type="text" class="form-control" value="<?= $mapel['id_kelas'] ?>" name="id_kelas" hidden>
                     <div class="form-group">
                         <label>Jenis Ujian</label>
-                        <input type="text" class="form-control" value="<?= $mapel['nama_ujian'] ?>" readonly>
+                        <input type="text" class="form-control" name="nama_ujian" value="<?= $mapel['nama_ujian'] ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama Mapel</label>

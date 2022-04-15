@@ -79,7 +79,7 @@
                     <span>Bank Soal</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="<?= base_url() ?>Dashboard/jadwal_ujian">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Jadwal Ujian</span></a>
             </li>

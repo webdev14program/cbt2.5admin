@@ -7,9 +7,6 @@
         <div class="card">
             <div class="card-body">
                 <!-- <a class="btn btn-success btn-sm" href="<?= base_url() ?>Dashboard/tambah_jurusan"><i class="fas fa-plus-square"></i> Tambah Jurusan</a> -->
-                <button type="button" class="btn btn-success btn-sm text-uppercase" data-toggle="modal" data-target="#tambahSiswa">
-                    <i class="fas fa-plus-square"></i> Tambah Mapel
-                </button>
                 <button type="button" class="btn btn-primary btn-sm text-uppercase" data-toggle="modal" data-target="#uploadMapel">
                     <i class="fas fa-upload"></i> Upload Mapel
                 </button>

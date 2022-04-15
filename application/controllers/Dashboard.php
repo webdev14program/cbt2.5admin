@@ -36,8 +36,6 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-
-
     public function upload_jurusan()
     {
         if ($this->input->post('submit', TRUE) == 'upload') {
@@ -98,7 +96,17 @@ class Dashboard extends CI_Controller
     public function hapus_all_kelas()
     {
         $this->db->empty_table('a_kelas');
-        $this->session->set_flashdata('pesan', 'Data Kelas Berhasil Di Hapus');
+        $this->session->set_flashdata('pesan', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Data Kelas Berhasil Di Hapus</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
         redirect('Dashboard/kelas');
     }
 
@@ -139,7 +147,17 @@ class Dashboard extends CI_Controller
                     $this->Model_kelas->simpan($save);
                     $reader->close();
                     unlink('temp_doc/' . $file['file_name']);
-                    $this->session->set_flashdata('pesan', 'Data Kelas Berhasil Di Tambah');
+                    $this->session->set_flashdata('pesan', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data Mapel Berhasil Di Tambah</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
                     redirect('Dashboard/kelas');
                 }
             } else {
@@ -171,7 +189,7 @@ class Dashboard extends CI_Controller
             </div>
 
         </div>
-    </div>');
+        </div>');
         redirect('Dashboard/mata_pelajaran');
     }
 
@@ -215,14 +233,14 @@ class Dashboard extends CI_Controller
                     $this->session->set_flashdata('info', '<div class="row">
         <div class="col-md mt-2">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Data Mapel Berhasil Di Tambah</strong>
+                <strong>Data Mata Pelajaran  Berhasil Di Tambah</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
         </div>
-    </div>');
+        </div>');
                     redirect('Dashboard/mata_pelajaran');
                 }
             } else {
@@ -254,7 +272,7 @@ class Dashboard extends CI_Controller
             </div>
 
         </div>
-    </div>');
+        </div>');
         redirect('Dashboard/peserta_ujian');
     }
 
@@ -310,7 +328,7 @@ class Dashboard extends CI_Controller
             </div>
 
         </div>
-    </div>');
+        </div>');
                     redirect('Dashboard/peserta_ujian');
                 }
             } else {
@@ -347,7 +365,7 @@ class Dashboard extends CI_Controller
             </div>
 
         </div>
-    </div>');
+        </div>');
         redirect('Dashboard/bank_soal');
     }
 
@@ -386,7 +404,7 @@ class Dashboard extends CI_Controller
         $id_mapel = $this->input->post('id_mapel');
         $id_kelas = $this->input->post('id_kelas');
         $status = $this->input->post('status');
-        $ujian = $this->input->post('ujian');
+        $ujian = $this->input->post('nama_ujian');
 
         $data = array(
             'id_mapel' => $id_mapel,
@@ -416,7 +434,33 @@ class Dashboard extends CI_Controller
             </div>
 
         </div>
-    </div>');
+        </div>');
+        redirect('Dashboard/bank_soal');
+    }
+
+    public function jadwal_ujian()
+    {
+
+        $isi['content'] = 'Ujian/tampilan_jadwal_ujian';
+        $this->load->view('templates/header');
+        $this->load->view('tampilan_dashboard', $isi);
+        $this->load->view('templates/footer');
+    }
+
+    public function hapus_all_jadwal_ujian()
+    {
+        $this->db->empty_table('bank_soal');
+        $this->session->set_flashdata('info', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Data Bank Soal Berhasil Di Hapus</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
         redirect('Dashboard/bank_soal');
     }
 
