@@ -34,4 +34,17 @@ class Model_bankSoal extends CI_Model
         $query = $this->db->query($sql);
         return $query->row_array();
     }
+
+    function dataBankSoalAktif()
+    {
+        $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_mapel.nama_mapel,a_kelas.kelas,bank_soal.status FROM `bank_soal`
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                INNER JOIN a_kelas
+                ON bank_soal.id_kelas=a_kelas.id
+                WHERE bank_soal.status='AKTIF'
+                ORDER BY `a_kelas`.`kelas` ASC;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
 }

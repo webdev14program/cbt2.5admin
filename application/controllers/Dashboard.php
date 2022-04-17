@@ -440,7 +440,7 @@ class Dashboard extends CI_Controller
 
     public function jadwal_ujian()
     {
-
+        $isi['bank_soal'] = $this->Model_bankSoal->dataBankSoalAktif();
         $isi['content'] = 'Ujian/tampilan_jadwal_ujian';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
