@@ -22,9 +22,8 @@
                         <thead class="text-uppercase">
                             <tr class="text-center">
                                 <th scope="col">#</th>
-                                <th scope="col">ID bank soal</th>
                                 <th scope="col">ujian</th>
-                                <th scope="col">kelas</th>
+                                <th scope="col">nama guru</th>
                                 <th scope="col">nama mapel</th>
                                 <th scope="col">status</th>
                                 <th scope="col">aksi
@@ -39,9 +38,8 @@
                                 foreach ($bankSoal as $row) {
                                 ?>
                                     <td><?php echo $no++; ?></td>
-                                    <td class="text-center"><?= $row['id_bank_soal'] ?></td>
                                     <td><?= $row['nama_ujian'] ?></td>
-                                    <td class="text-center"><?= $row['kelas'] ?></td>
+                                    <td class="text-center"><?= $row['nama_guru'] ?></td>
                                     <td><?= $row['nama_mapel'] ?></td>
                                     <td class="text-center font-weight-bold text-uppercase"><?= $row['status'] ?></td>
                                     <td>
@@ -93,11 +91,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>KELAS</label>
-                        <select class="form-control" name="kelas">
-                            <OPtion class="bg-info text-white" disabled>PILIH KELAS</OPtion>
-                            <?php foreach ($kelas as $row) { ?>
-                                <option value="<?= $row['id_kelas']; ?>"><?= $row['id_kelas']; ?> | <?= $row['kelas']; ?> </option>
+                        <label>Guru</label>
+                        <select class="form-control" name="guru">
+                            <OPtion class="bg-info text-white" disabled>Guru</OPtion>
+                            <?php foreach ($guru as $row) { ?>
+                                <option value="<?= $row['id_guru']; ?>"><?= $row['id_guru']; ?> | <?= $row['nama_guru']; ?> </option>
                             <?php } ?>
                         </select>
                     </div>

@@ -35,7 +35,22 @@ class Dashboard extends CI_Controller
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
     }
+    public function hapus_all_jurusan()
+    {
+        $this->db->empty_table('a_jurusan');
+        $this->session->set_flashdata('pesan', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Data Jurusan Berhasil Di Hapus</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+        </div>
+        </div>');
+        redirect('Dashboard/jurusan');
+    }
     public function upload_jurusan()
     {
         if ($this->input->post('submit', TRUE) == 'upload') {
@@ -74,7 +89,17 @@ class Dashboard extends CI_Controller
                     $reader->close();
                     unlink('temp_doc/' . $file['file_name']);
 
-                    $this->session->set_flashdata('pesan', 'Data Jurusan Berhasil Di Tambah');
+                    $this->session->set_flashdata('pesan', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data Jurusan Berhasil Di Upload</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
                     redirect('Dashboard/jurusan');
                 }
             } else {
@@ -159,6 +184,90 @@ class Dashboard extends CI_Controller
         </div>
         </div>');
                     redirect('Dashboard/kelas');
+                }
+            } else {
+                echo "Error :" . $this->upload->display_errors();
+            }
+        }
+    }
+
+    public function guru()
+    {
+        $isi['guru'] = $this->Model_guru->dataGuru();
+
+        $isi['content'] = 'tampilan_guru';
+        $this->load->view('templates/header');
+        $this->load->view('tampilan_dashboard', $isi);
+        $this->load->view('templates/footer');
+    }
+
+    public function hapus_all_guru()
+    {
+        $this->db->empty_table('a_guru');
+        $this->session->set_flashdata('pesan', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Data Guru Berhasil Di Hapus</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
+        redirect('Dashboard/guru');
+    }
+
+    public function upload_guru()
+    {
+        if ($this->input->post('submit', TRUE) == 'upload') {
+            $config['upload_path']      = './temp_doc/';
+            $config['allowed_types']    = 'xlsx|xls';
+            $config['file_name']        = 'doc' . time();
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('excel')) {
+                $file   = $this->upload->data();
+
+                $reader = ReaderEntityFactory::createXLSXReader();
+                $reader->open('temp_doc/' . $file['file_name']);
+
+
+                foreach ($reader->getSheetIterator() as $sheet) {
+                    $numRow = 1;
+                    $save   = array();
+                    foreach ($sheet->getRowIterator() as $row) {
+
+                        if ($numRow > 1) {
+
+                            $cells = $row->getCells();
+
+                            $data = array(
+                                'id_guru'       => $cells[0],
+                                'nama_guru'     => $cells[1],
+                                'jenis_guru'    => $cells[2],
+
+                            );
+                            array_push($save, $data);
+                        }
+                        $numRow++;
+                    }
+                    $this->Model_guru->simpan($save);
+                    $reader->close();
+                    unlink('temp_doc/' . $file['file_name']);
+                    $this->session->set_flashdata('pesan', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data Guru Berhasil Di Tambah</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
+                    redirect('Dashboard/guru');
                 }
             } else {
                 echo "Error :" . $this->upload->display_errors();
@@ -340,7 +449,7 @@ class Dashboard extends CI_Controller
     public function bank_soal()
     {
         // Drob Down
-        $isi['kelas'] = $this->Model_kelas->dataKelasTKJ();
+        $isi['guru'] = $this->Model_guru->dataGuruTKJ();
         $isi['mapel'] = $this->Model_mapel->dataMapelTKJ();
 
         // List Data Bank Soal
@@ -374,19 +483,29 @@ class Dashboard extends CI_Controller
         $randIDmapel = rand(1000000, 9999999);
         $ujian = $this->input->post('ujian');
         $mapel = $this->input->post('mapel');
-        $kelas = $this->input->post('kelas');
+        $guru = $this->input->post('guru');
 
         $data = array(
             'id_bank_soal' => $randIDmapel,
             'id_mapel' => $mapel,
-            'id_kelas' => $kelas,
+            'id_guru' => $guru,
             'nama_ujian' => $ujian,
-            'status' => 'non aktif'
+            'status' => 'NON AKTIF'
         );
 
         $this->db->insert('bank_soal', $data);
 
-        $this->session->set_flashdata('info', 'BANK DATA BERHASIL DI TAMBAH');
+        $this->session->set_flashdata('pesan', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data Peserta Ujian Berhasil Di Tambah</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
         redirect('Dashboard/bank_soal');
     }
 

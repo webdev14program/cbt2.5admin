@@ -64,6 +64,7 @@
                         <h6 class="collapse-header">List Data Master</h6>
                         <a class="collapse-item" href="<?= base_url() ?>Dashboard/jurusan">Master Jurusan</a>
                         <a class="collapse-item" href="<?= base_url() ?>Dashboard/kelas">Master Kelas</a>
+                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/guru">Master Guru</a>
                         <a class="collapse-item" href="<?= base_url() ?>Dashboard/mata_pelajaran">Master Mapel</a>
                     </div>
                 </div>

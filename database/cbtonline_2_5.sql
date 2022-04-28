@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2022 at 04:30 PM
+-- Generation Time: Apr 28, 2022 at 07:42 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.28
 
@@ -45,6 +45,67 @@ INSERT INTO `auth` (`id`, `username`, `password`, `nama`, `level`) VALUES
 (3, 'admin123bdp', 'cf8d502d1523ad6a708bc801ca1acaf1', 'ADMINISTRATOR BDP', 'adminbdp'),
 (4, 'admin123otkp', 'c2674a4b16ee7bb462c1c465968243ca', 'ADMINISTRATOR OTKP', 'adminotkp'),
 (5, 'admin123tkj', '6d9e578d3a86351836501a9907ab2980', 'ADMINISTRATOR TKJ', 'admintkj');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `a_guru`
+--
+
+CREATE TABLE `a_guru` (
+  `id_guru` int(18) NOT NULL,
+  `nama_guru` varchar(512) NOT NULL,
+  `jenis_guru` varchar(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `a_guru`
+--
+
+INSERT INTO `a_guru` (`id_guru`, `nama_guru`, `jenis_guru`) VALUES
+(1001911, 'SWIYONO, SE', 'BDP'),
+(1002848, 'DINI CHRISNAWATI,S.PD', 'AKL'),
+(1003422, 'HARY PUSPITARINI, S.PD', 'UMUM'),
+(1004398, 'IRFAN, S.PD', 'OTKP'),
+(1005537, 'VISHNU ISVARA, S. KOM', 'TKJ'),
+(1006900, 'HENRI WICAKSONO, S.E', 'AKL'),
+(1007363, 'NOFA AJI ZATMIKO, S.PD', 'BDP'),
+(1008169, 'NURUL HUDA, S.AG', 'UMUM'),
+(1009512, 'EKO, S.S', 'UMUM'),
+(1010253, 'SRIYANTI, S.PD', 'AKL'),
+(1011590, 'ISTIQOMAH', 'UMUM'),
+(1012389, 'AJIZAH TRI LESTARI, S.SI', 'UMUM'),
+(1013939, 'TUGIJONO, S.AG', 'UMUM'),
+(1014127, 'BAMBANG SUMITRO, S.KOM', 'TKJ'),
+(1015878, 'GUTSER SIBURIAN, S.PD', 'UMUM'),
+(1016959, 'UGI SISTIANTO, S.PD', 'UMUM'),
+(1017593, 'DRS. PUJI WALUYO, MM', 'UMUM'),
+(1018973, 'VEVY YURIZAL, S.PD', 'UMUM'),
+(1019991, 'SISWANTO, S.PD', 'UMUM'),
+(1020939, 'RISMA HARJANTI', 'UMUM'),
+(1021808, 'WINARNO, S.PD', 'UMUM'),
+(1022312, 'YAYAH SYAMSIAH, M.PD', 'AKL'),
+(1023800, 'MARIA MENGE, S.PD, M.PD', 'BDP'),
+(1024971, 'YULIAR SUTAN, S.PD', 'UMUM'),
+(1025396, 'ESA FATHONAH, S.PD', 'UMUM'),
+(1026977, 'PRIYONO, S.PD', 'OTKP'),
+(1027919, 'YIKE DIANA SYAPUTRI,S.PD', 'UMUM'),
+(1028575, 'EKA TIARA WIRAHAYU, S.PD', 'UMUM'),
+(1029146, 'KHALISA QATRUNADA, S.AG', 'UMUM'),
+(1030648, 'LELY LIANASARI, S.PD', 'OTKP'),
+(1031280, 'EKY NURBANI, S.PSI', 'UMUM'),
+(1032113, 'USUP RAHARJO, A.MD', 'TKJ'),
+(1033333, 'MUFIDAH, S.E', 'AKL'),
+(1034625, 'RAHMADIKA S SETIAWAN, S.KOM', 'TKJ'),
+(1035292, 'ABU AMAR A, S.PD', 'UMUM'),
+(1036538, 'DAYANTI, S.PD', 'AKL'),
+(1037460, 'SITI MARYAM, S.PD', 'BDP'),
+(1038246, 'TYAS AYU MAHARANI', 'UMUM'),
+(1039447, 'NOVIA PUTRI YUDE, S.PD', 'UMUM'),
+(1040519, 'ADILAH WIDIASTI, S.KOM', 'TKJ'),
+(1041390, 'ABU RIDHO AMINULLAH, S.E', 'OTKP'),
+(1042662, 'FERNANDO TJANDRA, S.KOM', 'TKJ'),
+(1043363, 'KUSDARYONO, M.TH', 'UMUM');
 
 -- --------------------------------------------------------
 
@@ -1238,9 +1299,9 @@ INSERT INTO `a_siswa` (`id`, `no_peserta`, `nama_siswa`, `kelas`, `jurusan`, `us
 CREATE TABLE `bank_soal` (
   `id_bank_soal` int(18) NOT NULL,
   `id_mapel` int(18) NOT NULL,
-  `id_kelas` int(11) NOT NULL,
+  `id_guru` int(11) NOT NULL,
   `nama_ujian` varchar(128) NOT NULL,
-  `status` enum('AKTIF','NON AKTIF','','') NOT NULL,
+  `status` varchar(32) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1248,9 +1309,10 @@ CREATE TABLE `bank_soal` (
 -- Dumping data for table `bank_soal`
 --
 
-INSERT INTO `bank_soal` (`id_bank_soal`, `id_mapel`, `id_kelas`, `nama_ujian`, `status`, `time`) VALUES
-(5843339, 4016404, 1008634, 'ULANGAN HARIAN', 'AKTIF', '2022-04-16 04:18:33'),
-(8818419, 4016404, 1009956, 'ULANGAN HARIAN', 'NON AKTIF', '2022-04-16 04:21:04');
+INSERT INTO `bank_soal` (`id_bank_soal`, `id_mapel`, `id_guru`, `nama_ujian`, `status`, `time`) VALUES
+(5662326, 4020404, 1034625, 'UJIAN TENGAH SEMESTER', 'NON AKTIF', '2022-04-27 16:36:28'),
+(7593072, 4021404, 1034625, 'UJIAN TENGAH SEMESTER', 'NON AKTIF', '2022-04-27 16:36:49'),
+(9096467, 4016404, 1034625, 'UJIAN TENGAH SEMESTER', 'NON AKTIF', '2022-04-27 16:36:17');
 
 -- --------------------------------------------------------
 
@@ -1279,6 +1341,12 @@ CREATE TABLE `soal` (
 --
 ALTER TABLE `auth`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `a_guru`
+--
+ALTER TABLE `a_guru`
+  ADD PRIMARY KEY (`id_guru`);
 
 --
 -- Indexes for table `a_jurusan`
@@ -1325,6 +1393,12 @@ ALTER TABLE `soal`
 --
 ALTER TABLE `auth`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `a_guru`
+--
+ALTER TABLE `a_guru`
+  MODIFY `id_guru` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1049667;
 
 --
 -- AUTO_INCREMENT for table `a_jurusan`
