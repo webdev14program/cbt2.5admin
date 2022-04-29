@@ -32,7 +32,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3 text-uppercase">ADMIN CBT 2.5 <br> UTAMA</div>
+                <div class="sidebar-brand-text mx-3 text-uppercase">ADMIN CBT <br> AKL</div>
             </a>
 
             <!-- Divider -->
@@ -40,7 +40,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="<?= base_url() ?>Dashboard">
+                <a class="nav-link" href="<?= base_url() ?>Dashboard_akl">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -62,15 +62,14 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">List Data Master</h6>
-                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/jurusan">Master Jurusan</a>
-                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/kelas">Master Kelas</a>
-                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/guru">Master Guru</a>
-                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/mata_pelajaran">Master Mapel</a>
+                        <a class="collapse-item" href="<?= base_url() ?>Dashboard_akl/kelas">Master Kelas</a>
+                        <a class="collapse-item" href="<?= base_url() ?>Dashboard_akl/guru">Master Guru</a>
+                        <a class="collapse-item" href="<?= base_url() ?>Dashboard_akl/mata_pelajaran">Master Mapel</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url() ?>Dashboard/peserta_ujian">
+                <a class="nav-link" href="<?= base_url() ?>Dashboard_akl/peserta_ujian">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Peserta Ujian </span></a>
             </li>

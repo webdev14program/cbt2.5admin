@@ -11,6 +11,16 @@ class Model_bankSoal extends CI_Model
         return $query->row()->bank_soal;
     }
 
+    public function countBankSoalAKL()
+    {
+        $sql = "SELECT COUNT(*) AS bank_soal_akl FROM `bank_soal`
+                INNER JOIN a_mapel
+                ON a_mapel.id_mapel=bank_soal.id_mapel
+                WHERE bank_soal.status='AKTIF' AND a_mapel.jurusan='AKL';";
+        $query = $this->db->query($sql);
+        return $query->row()->bank_soal_akl;
+    }
+
     function dataBankSoal()
     {
         $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_guru.nama_guru,a_mapel.nama_mapel,bank_soal.status,bank_soal.time FROM `bank_soal`
@@ -36,13 +46,12 @@ WHERE id_bank_soal='$id_bank_soal';";
 
     function dataBankSoalAktif()
     {
-        $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_mapel.nama_mapel,a_kelas.kelas,bank_soal.status FROM `bank_soal`
-                INNER JOIN a_mapel
-                ON bank_soal.id_mapel=a_mapel.id_mapel
-                INNER JOIN a_kelas
-                ON bank_soal.id_kelas=a_kelas.id
-                WHERE bank_soal.status='AKTIF'
-                ORDER BY `a_kelas`.`kelas` ASC;";
+        $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_mapel.nama_mapel,a_guru.nama_guru,bank_soal.status,bank_soal.time FROM `bank_soal`
+INNER JOIN a_mapel
+ON bank_soal.id_mapel=a_mapel.id_mapel
+INNER JOIN a_guru
+ON bank_soal.id_guru=a_guru.id_guru
+WHERE bank_soal.status='AKTIF';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

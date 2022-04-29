@@ -10,7 +10,7 @@
                 <form action="<?= base_url() ?>Dashboard/simpan_edit_bank_soal" method="POST">
                     <input type="text" class="form-control" value="<?= $mapel['id_bank_soal'] ?>" name="id_bank_soal" hidden>
                     <input type="text" class="form-control" value="<?= $mapel['id_mapel'] ?>" name="id_mapel" hidden>
-                    <input type="text" class="form-control" value="<?= $mapel['id_guru'] ?>" name="id_kelas" hidden>
+                    <input type="text" class="form-control" value="<?= $mapel['id_guru'] ?>" name="id_guru" hidden>
                     <div class="form-group">
                         <label>Jenis Ujian</label>
                         <input type="text" class="form-control" name="nama_ujian" value="<?= $mapel['nama_ujian'] ?>" readonly>

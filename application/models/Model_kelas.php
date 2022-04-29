@@ -10,6 +10,15 @@ class Model_kelas extends CI_Model
         $query = $this->db->query($sql);
         return $query->row()->kelas;
     }
+
+    public function countKelasAKL()
+    {
+        $sql = "SELECT count(*) AS akl FROM `a_kelas`
+                WHERE kode='AKL';";
+        $query = $this->db->query($sql);
+        return $query->row()->akl;
+    }
+
     public function dataKelas()
     {
         $sql = "SELECT *, a_kelas.id AS id_kelas FROM `a_kelas`
@@ -28,6 +37,19 @@ class Model_kelas extends CI_Model
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+    public function dataKelasAKL()
+    {
+        $sql = "SELECT *, a_kelas.id AS id_kelas FROM `a_kelas`
+                INNER JOIN a_jurusan
+                ON a_kelas.kode=a_jurusan.kode
+                WHERE a_kelas.kelas LIKE '%AKL%';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+
+
     public function dataKelasBDP()
     {
         $sql = "SELECT *, a_kelas.id AS id_kelas FROM `a_kelas`

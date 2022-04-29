@@ -52,6 +52,9 @@ class Model_siswa extends CI_Model
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+
+
     public function header_akun_siswa($id_kelas)
     {
         $sql = "SELECT *,a_kelas.kelas AS nama_kelas FROM `a_siswa`
@@ -73,12 +76,12 @@ class Model_siswa extends CI_Model
 
     public function dataSiswaAKL()
     {
-        $sql = "SELECT * FROM `a_siswa`
+        $sql = "SELECT a_siswa.id,a_siswa.no_peserta,a_siswa.nama_siswa,a_jurusan.jurusan,a_kelas.kelas,a_siswa.username,a_siswa.password,a_siswa.level,a_siswa.status FROM `a_siswa`
                 INNER JOIN a_kelas
-                on a_siswa.kelas=a_kelas.id
+                ON a_siswa.kelas=a_kelas.id
                 INNER JOIN a_jurusan
                 ON a_siswa.jurusan=a_jurusan.kode
-                WHERE a_siswa.jurusan LIKE '%akl%';";
+                WHERE a_siswa.jurusan='AKL' AND a_siswa.status='AKTIF';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

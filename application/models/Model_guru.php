@@ -19,6 +19,15 @@ class Model_guru extends CI_Model
         return $query->result_array();
     }
 
+    public function dataGuruAKL()
+    {
+        $sql = "SELECT * FROM `a_guru`
+                WHERE jenis_guru='AKL' OR jenis_guru='UMUM'  
+                ORDER BY `a_guru`.`jenis_guru` ASC";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     function simpan($data = array())
     {
         $jumlah = count($data);

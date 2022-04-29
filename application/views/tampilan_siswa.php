@@ -48,6 +48,8 @@
                                 <th>Kelas</th>
                                 <th>Username</th>
                                 <th>Password</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,6 +64,12 @@
                                     <td><?= $row['nama_kelas']; ?></td>
                                     <td><?= $row['username'] ?></td>
                                     <td><?= $row['password'] ?></td>
+                                    <td><?= $row['status'] ?></td>
+                                    <td>
+                                        <h5 class="text-center">
+                                            <a class="btn btn-danger btn-sm text-white text-uppercase" href="">Blokir</a>
+                                        </h5>
+                                    </td>
                             </tr>
                         <?php } ?>
                         </tbody>

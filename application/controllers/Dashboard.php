@@ -385,6 +385,10 @@ class Dashboard extends CI_Controller
         redirect('Dashboard/peserta_ujian');
     }
 
+    public function blokir_peserta()
+    {
+    }
+
     public function upload_peserta_ujian()
     {
         if ($this->input->post('submit', TRUE) == 'upload') {
@@ -418,6 +422,8 @@ class Dashboard extends CI_Controller
                                 'jurusan'         => $cells[4],
                                 'username'        => $cells[5],
                                 'password'        => $cells[6],
+                                'level'           => $cells[7],
+                                'status'          => $cells[8],
                             );
                             array_push($save, $data);
                         }
@@ -521,13 +527,13 @@ class Dashboard extends CI_Controller
     public function simpan_edit_bank_soal()
     {
         $id_mapel = $this->input->post('id_mapel');
-        $id_kelas = $this->input->post('id_kelas');
+        $id_guru = $this->input->post('id_guru');
         $status = $this->input->post('status');
         $ujian = $this->input->post('nama_ujian');
 
         $data = array(
             'id_mapel' => $id_mapel,
-            'id_kelas' => $id_kelas,
+            'id_guru' => $id_guru,
             'nama_ujian' => $ujian,
             'status' => $status
         );
@@ -560,6 +566,7 @@ class Dashboard extends CI_Controller
     public function jadwal_ujian()
     {
         $isi['bank_soal'] = $this->Model_bankSoal->dataBankSoalAktif();
+        $isi['kelas'] = $this->Model_kelas->dataKelasTKJ();
         $isi['content'] = 'Ujian/tampilan_jadwal_ujian';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
@@ -592,5 +599,11 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
+    }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('/');
     }
 }

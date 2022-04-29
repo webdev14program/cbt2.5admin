@@ -29,13 +29,58 @@
              </div>
              <div class="modal-body">
                  <form>
-                     <select class="form-control" name="mapel">
-                         <OPtion class="bg-info text-white" disabled>PILIH MAPEL</OPtion>
-                         <?php foreach ($bank_soal as $row) { ?>
-                             <option value="<?= $row['id_bank_soal']; ?>"><?= $row['nama_ujian']; ?> | <?= $row['nama_ujian']; ?> | <?= $row['kelas']; ?> </option>
-                         <?php } ?>
-                     </select>
-
+                     <div class="form-group">
+                         <label>Bank Soal</label>
+                         <select class="form-control" name="guru">
+                             <oPtion class="bg-info text-white" disabled>Bank Soal</oPtion>
+                             <?php foreach ($bank_soal as $row) { ?>
+                                 <option value="<?= $row['id_bank_soal']; ?>"><?= $row['id_bank_soal']; ?> | <?= $row['nama_guru']; ?> | <?= $row['nama_mapel']; ?> </option>
+                             <?php } ?>
+                         </select>
+                     </div>
+                     <div class="form-group">
+                         <label>Kelas</label>
+                         <select class="form-control" name="kelas">
+                             <oPtion class="bg-info text-white" disabled>Kelas</oPtion>
+                             <?php foreach ($kelas as $row) { ?>
+                                 <option value="<?= $row['id']; ?>"><?= $row['id']; ?> | <?= $row['jurusan']; ?> | <?= $row['kelas']; ?> </option>
+                             <?php } ?>
+                         </select>
+                     </div>
+                     <div class="row">
+                         <div class="col-md">
+                             <div class="form-group">
+                                 <label>Tanggal Akhir</label>
+                                 <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                             </div>
+                         </div>
+                         <div class="col-md">
+                             <div class="form-group">
+                                 <label>Tanggal Expired</label>
+                                 <input type="date" class="form-control" id="exampleInputPassword1">
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col">
+                             <div class="form-group">
+                                 <label>Waktu Mulai</label>
+                                 <input type="time" class="form-control" id="exampleInputPassword1">
+                             </div>
+                         </div>
+                         <div class="col">
+                             <div class="form-group">
+                                 <label>Waktu Selesai</label>
+                                 <input type="time" class="form-control" id="exampleInputPassword1">
+                             </div>
+                         </div>
+                         <div class="col">
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Durasi Ujian</label>
+                                 <input type="number" class="form-control" id="exampleInputPassword1">
+                             </div>
+                         </div>
+                     </div>
                      <button type="submit" class="btn btn-primary">Submit</button>
                  </form>
              </div>

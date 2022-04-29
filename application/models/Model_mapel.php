@@ -12,8 +12,10 @@ class Model_mapel extends CI_Model
 
     public function countMapelAKL()
     {
-        $sql = "SELECT COUNT(*) AS mapel_akl FROM `cbtonline_course`
-                WHERE format='singleactivity' AND fullname LIKE '%AKL%'";
+        $sql = "SELECT COUNT(*) AS mapel_akl FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_mapel.jurusan='AKL';";
         $query = $this->db->query($sql);
         return $query->row()->mapel_akl;
     }
@@ -51,30 +53,6 @@ class Model_mapel extends CI_Model
         return $query->result_array();
     }
 
-    public function dataMapelAKL()
-    {
-        $sql = "SELECT * FROM `cbtonline_course`
-                WHERE format='singleactivity' AND fullname LIKE '%AKL%'";
-        $query = $this->db->query($sql);
-        return $query->result_array();
-    }
-
-    public function dataMapelBDP()
-    {
-        $sql = "SELECT * FROM `a_mapel` 
-                WHERE a_mapel.nama_mapel LIKE '%bdp%'
-                ORDER BY `nama_mapel`  ASC;";
-        $query = $this->db->query($sql);
-        return $query->result_array();
-    }
-
-    public function dataMapelOTKP()
-    {
-        $sql = "SELECT * FROM `cbtonline_course`
-                WHERE format='singleactivity' AND fullname LIKE '%OTKP%'";
-        $query = $this->db->query($sql);
-        return $query->result_array();
-    }
 
     public function dataMapelTKJ()
     {
@@ -82,6 +60,16 @@ class Model_mapel extends CI_Model
                 INNER JOIN a_jurusan
                 ON a_mapel.jurusan=a_jurusan.kode
                 WHERE a_mapel.jurusan='TKJ';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function dataMapelAKL()
+    {
+        $sql = "SELECT a_mapel.*,a_jurusan.jurusan AS nama_jurusan FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_mapel.jurusan='AKL';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
