@@ -25,11 +25,11 @@
                                     foreach ($akun_peserta as $row) {
                                     ?>
                                      <td><?php echo $no++; ?></td>
-                                     <td><?= $row['id_kelas']; ?></td>
-                                     <td><?= $row['nama_kelas']; ?></td>
-                                     <td><?= $row['nama_jurusan']; ?></td>
+                                     <td><?= $row['id']; ?></td>
+                                     <td><?= $row['kelas']; ?></td>
+                                     <td><?= $row['jurusan']; ?></td>
                                      <td><?= $row['jumlah_siswa']; ?> Siswa</td>
-                                     <td class="text-center text-weight font-weight-bold"><a class="btn btn-danger btn-sm" target="_blank" href="<?= base_url() ?>Dashboard/print_akun_peserta/<?= $row['id_kelas'] ?>"> <i class="fas fa-print"></i> PRINT</a></td>
+                                     <td class="text-center text-weight font-weight-bold"><a class="btn btn-danger btn-sm" href="<?= base_url() ?>Dashboard/print_akun_peserta/<?= $row['id'] ?>"> <i class="fas fa-print"></i> PRINT</a></td>
                              </tr>
                          <?php } ?>
                          </tbody>

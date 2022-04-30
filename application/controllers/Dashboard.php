@@ -455,8 +455,8 @@ class Dashboard extends CI_Controller
     public function bank_soal()
     {
         // Drob Down
-        $isi['guru'] = $this->Model_guru->dataGuruTKJ();
-        $isi['mapel'] = $this->Model_mapel->dataMapelTKJ();
+        $isi['guru'] = $this->Model_guru->dataGuru();
+        $isi['mapel'] = $this->Model_mapel->dataMapel();
 
         // List Data Bank Soal
         $isi['bankSoal'] = $this->Model_bankSoal->dataBankSoal();
@@ -599,6 +599,13 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
+    }
+
+    public function print_akun_peserta($id_kelas)
+    {
+        $isi['header'] = $this->Model_siswa->header_akun_siswa($id_kelas);
+        $isi['siswa'] = $this->Model_siswa->akun_siswa($id_kelas);
+        $this->load->view('Ujian/print_akun_siswa', $isi);
     }
 
     public function logout()

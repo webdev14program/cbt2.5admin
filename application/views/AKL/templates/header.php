@@ -74,12 +74,12 @@
                     <span>Peserta Ujian </span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url() ?>Dashboard/bank_soal">
+                <a class="nav-link" href="<?= base_url() ?>Dashboard_akl/bank_soal">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Bank Soal</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url() ?>Dashboard/jadwal_ujian">
+                <a class="nav-link" href="<?= base_url() ?>Dashboard_akl/jadwal_ujian">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Jadwal Ujian</span></a>
             </li>
@@ -99,7 +99,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?= base_url() ?>Dashboard/akun_peserta">Akun Peserta</a>
+                        <a class="collapse-item" href="<?= base_url() ?>Dashboard_akl/akun_peserta">Akun Peserta</a>
                         <a class="collapse-item" href="#">Status Ujian</a>
                         <a class="collapse-item" href="#">Status Peserta</a>
                         <a class="collapse-item" href="#">Cetak Daftar Nilai</a>

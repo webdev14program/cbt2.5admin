@@ -72,34 +72,19 @@ class Dashboard_akl extends CI_Controller
     public function bank_soal()
     {
         // Drob Down
-        $isi['guru'] = $this->Model_guru->dataGuruTKJ();
-        $isi['mapel'] = $this->Model_mapel->dataMapelTKJ();
+        $isi['guru'] = $this->Model_guru->dataGuruAKL();
+        $isi['mapel'] = $this->Model_mapel->dataMapelAKL();
 
         // List Data Bank Soal
-        $isi['bankSoal'] = $this->Model_bankSoal->dataBankSoal();
+        $isi['bankSoal'] = $this->Model_bankSoal->dataBankSoalAKL();
 
-        $isi['content'] = 'bank_soal/tampilan_bank_soal';
-        $this->load->view('templates/header');
-        $this->load->view('tampilan_dashboard', $isi);
-        $this->load->view('templates/footer');
+        $isi['content'] = 'AKL/bank_soal/tampilan_bank_soal';
+        $this->load->view('AKL/templates/header');
+        $this->load->view('AKL/tampilan_dashboard', $isi);
+        $this->load->view('AKL/templates/footer');
     }
 
-    public function hapus_all_bank_soal()
-    {
-        $this->db->empty_table('bank_soal');
-        $this->session->set_flashdata('info', '<div class="row">
-        <div class="col-md mt-2">
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Data Bank Soal Berhasil Di Hapus</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
 
-        </div>
-        </div>');
-        redirect('Dashboard/bank_soal');
-    }
 
     public function simpan_bank_soal()
     {
@@ -129,16 +114,16 @@ class Dashboard_akl extends CI_Controller
 
         </div>
         </div>');
-        redirect('Dashboard/bank_soal');
+        redirect('Dashboard_akl/bank_soal');
     }
 
     public function detail_banksoal($id_bank_soal)
     {
         $isi['mapel'] = $this->Model_bankSoal->findByIDBankSoal($id_bank_soal);
-        $isi['content'] = 'bank_soal/tampilan_detail_bank_soal';
-        $this->load->view('templates/header');
-        $this->load->view('tampilan_dashboard', $isi);
-        $this->load->view('templates/footer');
+        $isi['content'] = 'AKL/bank_soal/tampilan_detail_bank_soal';
+        $this->load->view('AKL/templates/header');
+        $this->load->view('AKL/tampilan_dashboard', $isi);
+        $this->load->view('AKL/templates/footer');
     }
 
     public function simpan_edit_bank_soal()
@@ -157,37 +142,19 @@ class Dashboard_akl extends CI_Controller
 
         $this->db->where('id_bank_soal', $this->input->post('id_bank_soal'));
         $this->db->update('bank_soal', $data);
-        redirect('Dashboard/bank_soal');
+        redirect('Dashboard_akl/bank_soal');
     }
 
-    public function hapus_bank_soal($id_bank_soal)
-    {
-        $this->db->where('id_bank_soal', $id_bank_soal);
-        $this->db->delete('bank_soal');
 
-        // $this->session->set_flashdata('info', 'BANK DATA BERHASIL DI HAPUS DENGAN ID : ' . $id_bank_soal);
-        $this->session->set_flashdata('info', '<div class="row">
-        <div class="col-md mt-2">
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>BANK DATA BANK SOAL BERHASIL DI HAPUS BERDASARKAN ID </strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-        </div>
-        </div>');
-        redirect('Dashboard/bank_soal');
-    }
 
     public function jadwal_ujian()
     {
-        $isi['bank_soal'] = $this->Model_bankSoal->dataBankSoalAktif();
-        $isi['kelas'] = $this->Model_kelas->dataKelasTKJ();
-        $isi['content'] = 'Ujian/tampilan_jadwal_ujian';
-        $this->load->view('templates/header');
-        $this->load->view('tampilan_dashboard', $isi);
-        $this->load->view('templates/footer');
+        $isi['bank_soal'] = $this->Model_bankSoal->dataBankSoalAktifAKL();
+        $isi['kelas'] = $this->Model_kelas->dataKelasAKL();
+        $isi['content'] = 'AKL/Ujian/tampilan_jadwal_ujian';
+        $this->load->view('AKL/templates/header');
+        $this->load->view('AKL/tampilan_dashboard', $isi);
+        $this->load->view('AKL/templates/footer');
     }
 
     public function hapus_all_jadwal_ujian()
@@ -210,12 +177,12 @@ class Dashboard_akl extends CI_Controller
     public function akun_peserta()
     {
 
-        $isi['akun_peserta'] = $this->Model_siswa->dataAkunPeserta();
+        $isi['akun_peserta'] = $this->Model_siswa->dataAkunPesertaAKL();
 
-        $isi['content'] = 'Ujian/tampilan_akun_peserta';
-        $this->load->view('templates/header');
-        $this->load->view('tampilan_dashboard', $isi);
-        $this->load->view('templates/footer');
+        $isi['content'] = 'AKL/Ujian/tampilan_akun_peserta';
+        $this->load->view('AKL/templates/header');
+        $this->load->view('AKL/tampilan_dashboard', $isi);
+        $this->load->view('AKL/templates/footer');
     }
 
     public function logout()

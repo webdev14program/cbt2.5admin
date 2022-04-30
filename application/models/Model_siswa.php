@@ -57,16 +57,17 @@ class Model_siswa extends CI_Model
 
     public function header_akun_siswa($id_kelas)
     {
-        $sql = "SELECT *,a_kelas.kelas AS nama_kelas FROM `a_siswa`
+        $sql = "SELECT a_kelas.kelas FROM `a_siswa`
                 INNER JOIN a_kelas
                 ON a_siswa.kelas=a_kelas.id
-                WHERE a_siswa.kelas='$id_kelas';";
+                WHERE a_siswa.kelas='$id_kelas'
+                GROUP BY a_kelas.kelas;";
         $query = $this->db->query($sql);
         return $query->row_array();
     }
     public function akun_siswa($id_kelas)
     {
-        $sql = "SELECT *,a_kelas.kelas AS nama_kelas FROM `a_siswa`
+        $sql = "SELECT a_siswa.nama_siswa,a_kelas.kelas,a_siswa.username,a_siswa.password FROM `a_siswa`
                 INNER JOIN a_kelas
                 ON a_siswa.kelas=a_kelas.id
                 WHERE a_siswa.kelas='$id_kelas';";
@@ -133,6 +134,21 @@ class Model_siswa extends CI_Model
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+    public function dataAkunPesertaAKL()
+    {
+        $sql = "SELECT a_kelas.id,a_kelas.kelas,a_jurusan.jurusan,COUNT(a_siswa.nama_siswa) AS jumlah_siswa FROM `a_siswa`
+                INNER JOIN a_kelas
+                ON a_siswa.kelas=a_kelas.id
+                INNER JOIN a_jurusan
+                ON a_kelas.kode=a_jurusan.kode
+                WHERE a_kelas.kode='AKL'
+                GROUP BY a_kelas.kelas;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+
 
     function simpan($data = array())
     {
