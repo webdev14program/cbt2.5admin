@@ -22,6 +22,7 @@
                         <thead class="text-uppercase">
                             <tr class="text-center">
                                 <th scope="col">#</th>
+                                <th scope="col">ID Bank Soal</th>
                                 <th scope="col">ujian</th>
                                 <th scope="col">nama guru</th>
                                 <th scope="col">nama mapel</th>
@@ -38,6 +39,7 @@
                                 foreach ($bankSoal as $row) {
                                 ?>
                                     <td><?php echo $no++; ?></td>
+                                    <td><?= $row['id_bank_soal'] ?></td>
                                     <td><?= $row['nama_ujian'] ?></td>
                                     <td class="text-center"><?= $row['nama_guru'] ?></td>
                                     <td><?= $row['nama_mapel'] ?></td>

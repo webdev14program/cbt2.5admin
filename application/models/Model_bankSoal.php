@@ -79,4 +79,13 @@ class Model_bankSoal extends CI_Model
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+    function simpan_soal($data = array())
+    {
+        $jumlah = count($data);
+
+        if ($jumlah > 0) {
+            $this->db->insert_batch('soal', $data);
+        }
+    }
 }

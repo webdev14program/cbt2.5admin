@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
     }
-
+    // Start Jurusan
     public function jurusan()
     {
         $isi['jurusan'] = $this->Model_jurusan->dataJurusan();
@@ -35,6 +35,7 @@ class Dashboard extends CI_Controller
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
     }
+
     public function hapus_all_jurusan()
     {
         $this->db->empty_table('a_jurusan');
@@ -51,6 +52,7 @@ class Dashboard extends CI_Controller
         </div>');
         redirect('Dashboard/jurusan');
     }
+
     public function upload_jurusan()
     {
         if ($this->input->post('submit', TRUE) == 'upload') {
@@ -107,7 +109,9 @@ class Dashboard extends CI_Controller
             }
         }
     }
+    // End Jurusan
 
+    // Start Kelas
     public function kelas()
     {
         $isi['kelas'] = $this->Model_kelas->dataKelas();
@@ -190,7 +194,9 @@ class Dashboard extends CI_Controller
             }
         }
     }
+    // End Kelas
 
+    // Start Guru
     public function guru()
     {
         $isi['guru'] = $this->Model_guru->dataGuru();
@@ -274,7 +280,9 @@ class Dashboard extends CI_Controller
             }
         }
     }
+    // End Guru
 
+    // Start Mapel
     public function mata_pelajaran()
     {
         $isi['mapel'] = $this->Model_mapel->dataMapel();
@@ -357,7 +365,10 @@ class Dashboard extends CI_Controller
             }
         }
     }
+    // End Mapel
 
+
+    // Start Peserta Ujian
     public function peserta_ujian()
     {
         $isi['siswa'] = $this->Model_siswa->dataSiswa();
@@ -387,6 +398,19 @@ class Dashboard extends CI_Controller
 
     public function blokir_peserta()
     {
+        $this->db->empty_table('a_siswa');
+        $this->session->set_flashdata('info', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Data Peserta Ujian Berhasil Di Hapus</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
+        redirect('Dashboard/peserta_ujian');
     }
 
     public function upload_peserta_ujian()
@@ -434,16 +458,15 @@ class Dashboard extends CI_Controller
                     unlink('temp_doc/' . $file['file_name']);
                     $this->session->set_flashdata('info', '
                     <div class="row">
-        <div class="col-md mt-2">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Data Peserta Ujian Berhasil Di Tambah</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-        </div>
-        </div>');
+                    <div class="col-md mt-2">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Data Peserta Ujian Berhasil Di Tambah</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>');
                     redirect('Dashboard/peserta_ujian');
                 }
             } else {
@@ -451,7 +474,9 @@ class Dashboard extends CI_Controller
             }
         }
     }
+    // End Peserta Ujian
 
+    // Start Bank Soal
     public function bank_soal()
     {
         // Drob Down
@@ -524,29 +549,75 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function simpan_edit_bank_soal()
+    public function upload_soal()
     {
-        $id_mapel = $this->input->post('id_mapel');
-        $id_guru = $this->input->post('id_guru');
-        $status = $this->input->post('status');
-        $ujian = $this->input->post('nama_ujian');
+        $id_bank_soal = $this->input->post('id_bank_soal');
+        if ($this->input->post('submit', TRUE) == 'upload') {
+            $config['upload_path']      = './temp_doc/';
+            $config['allowed_types']    = 'xlsx|xls';
+            $config['file_name']        = 'doc' . time();
 
-        $data = array(
-            'id_mapel' => $id_mapel,
-            'id_guru' => $id_guru,
-            'nama_ujian' => $ujian,
-            'status' => $status
-        );
+            $this->load->library('upload', $config);
 
-        $this->db->where('id_bank_soal', $this->input->post('id_bank_soal'));
-        $this->db->update('bank_soal', $data);
-        redirect('Dashboard/bank_soal');
+            if ($this->upload->do_upload('excel')) {
+                $file   = $this->upload->data();
+
+                $reader = ReaderEntityFactory::createXLSXReader();
+                $reader->open('temp_doc/' . $file['file_name']);
+
+
+                foreach ($reader->getSheetIterator() as $sheet) {
+                    $numRow = 1;
+                    $save   = array();
+                    foreach ($sheet->getRowIterator() as $row) {
+
+                        if ($numRow > 1) {
+
+                            $cells = $row->getCells();
+
+                            $data = array(
+                                'id_bank_soal'              => $id_bank_soal,
+                                'soal'      => $cells[0],
+                                'pilA'      => $cells[1],
+                                'pilB'           => $cells[2],
+                                'pilC'         => $cells[3],
+                                'pilD'        => $cells[4],
+                                'pilE'        => $cells[5],
+                                'kunci'        => $cells[6],
+                            );
+                            array_push($save, $data);
+                        }
+                        $numRow++;
+                    }
+                    $this->Model_bankSoal->simpan_soal($save);
+                    $reader->close();
+                    unlink('temp_doc/' . $file['file_name']);
+                    $this->session->set_flashdata('info', '
+                    <div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data Peserta Ujian Berhasil Di Tambah</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        </div>');
+                    redirect('Dashboard/bank_soal');
+                }
+            } else {
+                echo "Error :" . $this->upload->display_errors();
+            }
+        }
     }
 
     public function hapus_bank_soal($id_bank_soal)
     {
         $this->db->where('id_bank_soal', $id_bank_soal);
         $this->db->delete('bank_soal');
+
+        $this->db->where('id_bank_soal', $id_bank_soal);
+        $this->db->delete('soal');
 
         // $this->session->set_flashdata('info', 'BANK DATA BERHASIL DI HAPUS DENGAN ID : ' . $id_bank_soal);
         $this->session->set_flashdata('info', '<div class="row">
@@ -562,11 +633,13 @@ class Dashboard extends CI_Controller
         </div>');
         redirect('Dashboard/bank_soal');
     }
+    // End Bank Soal
 
+    // Start Jadwal Ujian
     public function jadwal_ujian()
     {
         $isi['bank_soal'] = $this->Model_bankSoal->dataBankSoalAktif();
-        $isi['kelas'] = $this->Model_kelas->dataKelasTKJ();
+        $isi['kelas'] = $this->Model_kelas->dataKelas();
         $isi['content'] = 'Ujian/tampilan_jadwal_ujian';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
@@ -589,7 +662,9 @@ class Dashboard extends CI_Controller
         </div>');
         redirect('Dashboard/bank_soal');
     }
+    // End Jadwal Ujian
 
+    // Start Akun Peserta
     public function akun_peserta()
     {
 
@@ -607,6 +682,7 @@ class Dashboard extends CI_Controller
         $isi['siswa'] = $this->Model_siswa->akun_siswa($id_kelas);
         $this->load->view('Ujian/print_akun_siswa', $isi);
     }
+    // End Akun Peserta
 
     public function logout()
     {

@@ -150,7 +150,7 @@ class Model_siswa extends CI_Model
 
 
 
-    function simpan($data = array())
+    function simpanSoal($data = array())
     {
         $jumlah = count($data);
 

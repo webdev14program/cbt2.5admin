@@ -5,7 +5,10 @@ class Model_mapel extends CI_Model
 {
     public function countMapel()
     {
-        $sql = "SELECT COUNT(*) AS mapel FROM `a_mapel`;";
+        $sql = "SELECT COUNT(*) AS mapel FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_jurusan.kode='AKL' OR  a_jurusan.kode='BDP' OR a_jurusan.kode='OTKP' OR a_jurusan.kode='TKJ';";
         $query = $this->db->query($sql);
         return $query->row()->mapel;
     }
@@ -48,7 +51,8 @@ class Model_mapel extends CI_Model
     {
         $sql = "SELECT a_mapel.*,a_jurusan.jurusan AS nama_jurusan FROM `a_mapel`
                 INNER JOIN a_jurusan
-                ON a_mapel.jurusan=a_jurusan.kode;";
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_jurusan.kode='AKL' OR  a_jurusan.kode='BDP' OR a_jurusan.kode='OTKP' OR a_jurusan.kode='TKJ';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
