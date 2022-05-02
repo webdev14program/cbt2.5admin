@@ -552,6 +552,7 @@ class Dashboard extends CI_Controller
     public function upload_soal()
     {
         $id_bank_soal = $this->input->post('id_bank_soal');
+
         if ($this->input->post('submit', TRUE) == 'upload') {
             $config['upload_path']      = './temp_doc/';
             $config['allowed_types']    = 'xlsx|xls';
@@ -594,15 +595,15 @@ class Dashboard extends CI_Controller
                     unlink('temp_doc/' . $file['file_name']);
                     $this->session->set_flashdata('info', '
                     <div class="row">
-        <div class="col-md mt-2">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Data Peserta Ujian Berhasil Di Tambah</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-        </div>');
+                <div class="col-md mt-2">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Data Peserta Ujian Berhasil Di Tambah</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                </div>');
                     redirect('Dashboard/bank_soal');
                 }
             } else {
