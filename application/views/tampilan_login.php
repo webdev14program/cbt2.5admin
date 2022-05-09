@@ -35,7 +35,7 @@
 
     <div class="limiter">
         <div class="container-login100">
-            <div class="login100-more" style="background-image: url('https://smkth-jakbar.com/assets/images/1.jpg');"></div>
+            <div class="login100-more" style="background-image: url('https://smkth-jakbar.com/assets/images/background3.jpeg');"></div>
 
             <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
                 <h5 class="text-center"><img src="https://smkth-jakbar.com/assets/images/logo.png" style="width: 200px;height: 200px;" alt="IMG"></h5>
