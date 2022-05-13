@@ -31,8 +31,9 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3 text-uppercase">ADMIN CBT <br> AKL</div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>Dashboard_akl">
+                <div class=" sidebar-brand-text mx-3 text-uppercase">ADMIN CBT <br> AKL
+                </div>
             </a>
 
             <!-- Divider -->

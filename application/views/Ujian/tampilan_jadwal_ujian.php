@@ -18,6 +18,48 @@
      </div>
  </div>
 
+
+ <div class="row mb-2 mt-2">
+     <div class="col-md">
+         <div class="card">
+             <div class="card-body">
+                 <div class="table-responsive">
+                     <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+                         <thead class="text-uppercase">
+                             <tr>
+                                 <th>#</th>
+                                 <th>nama guru</th>
+                                 <th>nama mapel</th>
+                                 <th>Kelas</th>
+                                 <th>Tanggal Ujian</th>
+                                 <th>Waktu Ujian</th>
+                                 <th>durasi ujian</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <?php
+                                    $no = 1;
+                                    foreach ($jadwal_ujian as $row) {
+                                    ?>
+                                     <td><?php echo $no++; ?></td>
+                                     <td><?= $row['nama_guru']; ?></td>
+                                     <td><?= $row['nama_mapel']; ?></td>
+                                     <td><?= $row['kelas']; ?></td>
+                                     <td><?= $row['tanggal_ujian'] ?></td>
+                                     <td><?= $row['waktu_mulai'] ?> - <?= $row['waktu_akir'] ?></td>
+                                     <td><?= $row['durasi_ujian'] ?> Menit</td>
+
+                             </tr>
+                         <?php } ?>
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
  <div class="modal fade" id="jadwalUjian" tabindex="-1" aria-labelledby="tambahSiswa" aria-hidden="true">
      <div class="modal-dialog modal-lg">
          <div class="modal-content">
@@ -28,10 +70,10 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form>
+                 <form action="<?= base_url() ?>Dashboard/simpan_jadwal" method="POST">
                      <div class="form-group">
                          <label>Bank Soal</label>
-                         <select class="form-control" name="guru">
+                         <select class="form-control" name="id_bank_soal">
                              <oPtion class="bg-info text-white" disabled>Bank Soal</oPtion>
                              <?php foreach ($bank_soal as $row) { ?>
                                  <option value="<?= $row['id_bank_soal']; ?>"><?= $row['id_bank_soal']; ?> | <?= $row['nama_guru']; ?> | <?= $row['nama_mapel']; ?> </option>
@@ -40,24 +82,24 @@
                      </div>
                      <div class="form-group">
                          <label>Kelas</label>
-                         <select class="form-control" name="kelas">
+                         <select class="form-control" name="id_kelas">
                              <oPtion class="bg-info text-white" disabled>Kelas</oPtion>
                              <?php foreach ($kelas as $row) { ?>
-                                 <option value="<?= $row['id']; ?>"><?= $row['id']; ?> | <?= $row['jurusan']; ?> | <?= $row['kelas']; ?> </option>
+                                 <option value="<?= $row['id_kelas']; ?>"><?= $row['id_kelas']; ?> | <?= $row['jurusan']; ?> | <?= $row['kelas']; ?> </option>
                              <?php } ?>
                          </select>
                      </div>
                      <div class="row">
                          <div class="col-md">
                              <div class="form-group">
-                                 <label>Tanggal Akhir</label>
-                                 <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                 <label>Tanggal Awal</label>
+                                 <input type="date" class="form-control" name="tgl_awal">
                              </div>
                          </div>
                          <div class="col-md">
                              <div class="form-group">
                                  <label>Tanggal Expired</label>
-                                 <input type="date" class="form-control" id="exampleInputPassword1">
+                                 <input type="date" class="form-control" name="tgl_akhir">
                              </div>
                          </div>
                      </div>
@@ -65,23 +107,26 @@
                          <div class="col">
                              <div class="form-group">
                                  <label>Waktu Mulai</label>
-                                 <input type="time" class="form-control" id="exampleInputPassword1">
+                                 <input type="time" class="form-control" name="waktu_mulai">
                              </div>
                          </div>
                          <div class="col">
                              <div class="form-group">
                                  <label>Waktu Selesai</label>
-                                 <input type="time" class="form-control" id="exampleInputPassword1">
+                                 <input type="time" class="form-control" name="waktu_akir">
                              </div>
                          </div>
                          <div class="col">
                              <div class="form-group">
                                  <label for="exampleInputPassword1">Durasi Ujian</label>
-                                 <input type="number" class="form-control" id="exampleInputPassword1">
+                                 <input type="number" class="form-control" name="durasi_ujian">
                              </div>
                          </div>
                      </div>
-                     <button type="submit" class="btn btn-primary">Submit</button>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         <button type="submit" class="btn btn-primary">Simpan</button>
+                     </div>
                  </form>
              </div>
          </div>

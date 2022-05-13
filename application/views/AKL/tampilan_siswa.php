@@ -16,8 +16,8 @@
                                 <th>Kelas</th>
                                 <th>Username</th>
                                 <th>Password</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
+                                <!-- <th>Status</th>
+                                <th>Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -32,12 +32,12 @@
                                     <td><?= $row['kelas']; ?></td>
                                     <td><?= $row['username'] ?></td>
                                     <td><?= $row['password'] ?></td>
-                                    <td><?= $row['status'] ?></td>
+                                    <!-- <td><?= $row['status'] ?></td>
                                     <td>
                                         <h5 class="text-center">
                                             <a class="btn btn-danger btn-sm" href="">Blokir</a>
                                         </h5>
-                                    </td>
+                                    </td> -->
                             </tr>
                         <?php } ?>
                         </tbody>

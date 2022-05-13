@@ -21,6 +21,24 @@ class Model_bankSoal extends CI_Model
         return $query->row()->bank_soal_akl;
     }
 
+    public function countJadwalAKL()
+    {
+        $sql = "SELECT COUNT(*) AS jadwal_ujian
+                FROM `jadwal_ujian`
+                INNER JOIN bank_soal
+                ON jadwal_ujian.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_kelas
+                ON jadwal_ujian.id_kelas=a_kelas.id
+                WHERE a_guru.jenis_guru='AKL'
+                ORDER BY jadwal_ujian.tgl_awal ASC;";
+        $query = $this->db->query($sql);
+        return $query->row()->jadwal_ujian;
+    }
+
     function dataBankSoal()
     {
         $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_guru.nama_guru,a_mapel.nama_mapel,bank_soal.status,bank_soal.time FROM `bank_soal`
@@ -76,6 +94,70 @@ class Model_bankSoal extends CI_Model
                 INNER JOIN a_guru
                 ON bank_soal.id_guru=a_guru.id_guru
                 WHERE bank_soal.status='AKTIF' AND a_mapel.jurusan='AKL';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    function header_bankSoal($id_bank_soal)
+    {
+        $sql = "SELECT bank_soal.id_bank_soal,a_guru.nama_guru,a_mapel.nama_mapel,bank_soal.nama_ujian FROM `soal`
+                INNER JOIN bank_soal
+                ON soal.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                WHERE bank_soal.id_bank_soal='$id_bank_soal'
+                GROUP BY bank_soal.id_bank_soal;";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
+    function dataSoal_bankSoal($id_bank_soal)
+    {
+        $sql = "SELECT soal.id_bank_soal,soal.soal,soal.pilA,soal.pilB,soal.pilC,soal.pilD,soal.pilE,soal.kunci FROM `soal`
+                INNER JOIN bank_soal
+                ON soal.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                WHERE bank_soal.id_bank_soal='$id_bank_soal';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    function data_jadwalUjian()
+    {
+        $sql = "SELECT a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+                concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
+                FROM `jadwal_ujian`
+                INNER JOIN bank_soal
+                ON jadwal_ujian.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_kelas
+                ON jadwal_ujian.id_kelas=a_kelas.id
+                ORDER BY jadwal_ujian.tgl_awal ASC;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    function data_jadwalUjianAKL()
+    {
+        $sql = "SELECT a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+                concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
+                FROM `jadwal_ujian`
+                INNER JOIN bank_soal
+                ON jadwal_ujian.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_kelas
+                ON jadwal_ujian.id_kelas=a_kelas.id
+                WHERE a_guru.jenis_guru='AKL'
+                ORDER BY jadwal_ujian.tgl_awal ASC;";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

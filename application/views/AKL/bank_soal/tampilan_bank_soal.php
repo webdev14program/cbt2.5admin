@@ -43,9 +43,9 @@
                                     <td class="text-center font-weight-bold text-uppercase"><?= $row['status'] ?></td>
                                     <td>
                                         <h5 class="text-center">
-                                            <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_akl/detail_banksoal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-upload"></i> upload</a>
-                                            <a class="btn btn-primary btn-sm  text-uppercase" href="#"><i class="fas fa-search"></i> detail</a>
-                                            <a class="btn btn-danger btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_akl/hapus_bank_soal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-trash"></i> remove</a>
+                                            <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_akl/upload_banksoal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-upload"></i></a>
+                                            <a class="btn btn-primary btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_akl/detail_banksoal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-search"></i></a>
+                                            <a class="btn btn-danger btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_akl/hapus_bank_soal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-trash"></i></a>
                                         </h5>
 
                                     </td>

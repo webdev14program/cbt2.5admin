@@ -46,8 +46,8 @@
                                     <td class="text-center font-weight-bold text-uppercase"><?= $row['status'] ?></td>
                                     <td>
                                         <h5 class="text-center">
-                                            <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard/detail_banksoal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-upload"></i></a>
-                                            <a class="btn btn-primary btn-sm  text-uppercase" href="#"><i class="fas fa-search"></i></a>
+                                            <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard/upload_banksoal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-upload"></i></a>
+                                            <a class="btn btn-primary btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard/detail_banksoal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-search"></i></a>
                                             <a class="btn btn-danger btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard/hapus_bank_soal/<?= $row['id_bank_soal'] ?>"><i class="fas fa-trash"></i></a>
                                         </h5>
 

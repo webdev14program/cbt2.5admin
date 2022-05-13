@@ -36,7 +36,7 @@
             <div class="card-body bg-danger">
                 <div class="row">
                     <div class="col">
-                        <h3 class="text-white  font-italic font-weight-bold ">0</h3>
+                        <h3 class="text-white  font-italic font-weight-bold "><?= $jadwal_ujian ?></h3>
                         <h4 class="text-white  font-italic font-weight-bold">Jadwal Ujian</h4>
                     </div>
 

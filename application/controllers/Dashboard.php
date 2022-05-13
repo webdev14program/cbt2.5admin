@@ -495,6 +495,7 @@ class Dashboard extends CI_Controller
     public function hapus_all_bank_soal()
     {
         $this->db->empty_table('bank_soal');
+        $this->db->empty_table('soal');
         $this->session->set_flashdata('info', '<div class="row">
         <div class="col-md mt-2">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -542,8 +543,18 @@ class Dashboard extends CI_Controller
 
     public function detail_banksoal($id_bank_soal)
     {
-        $isi['mapel'] = $this->Model_bankSoal->findByIDBankSoal($id_bank_soal);
+        $isi['header'] = $this->Model_bankSoal->header_bankSoal($id_bank_soal);
+        $isi['data_soal'] = $this->Model_bankSoal->dataSoal_bankSoal($id_bank_soal);
         $isi['content'] = 'bank_soal/tampilan_detail_bank_soal';
+        $this->load->view('templates/header');
+        $this->load->view('tampilan_dashboard', $isi);
+        $this->load->view('templates/footer');
+    }
+
+    public function upload_banksoal($id_bank_soal)
+    {
+        $isi['mapel'] = $this->Model_bankSoal->findByIDBankSoal($id_bank_soal);
+        $isi['content'] = 'bank_soal/tampilan_upload_bank_soal';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
@@ -552,6 +563,9 @@ class Dashboard extends CI_Controller
     public function upload_soal()
     {
         $id_bank_soal = $this->input->post('id_bank_soal');
+        $id_mapel = $this->input->post('id_mapel');
+        $id_guru = $this->input->post('id_guru');
+        $nama_ujian = $this->input->post('nama_ujian');
 
         if ($this->input->post('submit', TRUE) == 'upload') {
             $config['upload_path']      = './temp_doc/';
@@ -604,6 +618,18 @@ class Dashboard extends CI_Controller
                     </div>
                 </div>
                 </div>');
+
+                    $edit_bank_soal = array(
+                        'id_bank_soal' => $id_bank_soal,
+                        'id_mapel' => $id_mapel,
+                        'id_guru' => $id_guru,
+                        'nama_ujian' => $nama_ujian,
+                        'status' => 'AKTIF'
+                    );
+
+                    $this->db->where('id_bank_soal', $id_bank_soal);
+                    $this->db->update('bank_soal', $edit_bank_soal);
+
                     redirect('Dashboard/bank_soal');
                 }
             } else {
@@ -641,15 +667,43 @@ class Dashboard extends CI_Controller
     {
         $isi['bank_soal'] = $this->Model_bankSoal->dataBankSoalAktif();
         $isi['kelas'] = $this->Model_kelas->dataKelas();
+        $isi['jadwal_ujian'] = $this->Model_bankSoal->data_jadwalUjian();
+
         $isi['content'] = 'Ujian/tampilan_jadwal_ujian';
         $this->load->view('templates/header');
         $this->load->view('tampilan_dashboard', $isi);
         $this->load->view('templates/footer');
     }
 
+    public function simpan_jadwal()
+    {
+        $id_jadwal_ujian = rand(111111, 999999);
+        $id_bank_soal = $this->input->post('id_bank_soal');
+        $id_kelas = $this->input->post('id_kelas');
+        $tgl_awal = $this->input->post('tgl_awal');
+        $tgl_akhir = $this->input->post('tgl_akhir');
+        $waktu_mulai = $this->input->post('waktu_mulai');
+        $waktu_akir = $this->input->post('waktu_akir');
+        $durasi_ujian = $this->input->post('durasi_ujian');
+
+        $data = array(
+            'id_jadwal_ujian' => $id_jadwal_ujian,
+            'id_bank_soal' => $id_bank_soal,
+            'id_kelas' => $id_kelas,
+            'tgl_awal' => $tgl_awal,
+            'tgl_akhir' => $tgl_akhir,
+            'waktu_mulai' => $waktu_mulai,
+            'waktu_akir' => $waktu_akir,
+            'durasi_ujian' => $durasi_ujian
+        );
+
+        $this->db->insert('jadwal_ujian', $data);
+        redirect('Dashboard/jadwal_ujian');
+    }
+
     public function hapus_all_jadwal_ujian()
     {
-        $this->db->empty_table('bank_soal');
+        $this->db->empty_table('jadwal_ujian');
         $this->session->set_flashdata('info', '<div class="row">
         <div class="col-md mt-2">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -661,8 +715,10 @@ class Dashboard extends CI_Controller
 
         </div>
         </div>');
-        redirect('Dashboard/bank_soal');
+        redirect('Dashboard/jadwal_ujian');
     }
+
+
     // End Jadwal Ujian
 
     // Start Akun Peserta
