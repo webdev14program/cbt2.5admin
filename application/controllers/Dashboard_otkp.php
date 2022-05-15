@@ -294,16 +294,36 @@ class Dashboard_otkp extends CI_Controller
         redirect('Dashboard_otkp/jadwal_ujian');
     }
 
+    public function hapus_jadwal_ujian($id_jadwal_ujian)
+    {
+        $this->db->where('id_jadwal_ujian', $id_jadwal_ujian);
+        $this->db->delete('jadwal_ujian');
+
+        // $this->session->set_flashdata('info', 'BANK DATA BERHASIL DI HAPUS DENGAN ID : ' . $id_bank_soal);
+        $this->session->set_flashdata('info', '<div class="row">
+        <div class="col-md mt-2">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>BANK DATA JADWAL UJIAN BERHASIL DI HAPUS BERDASARKAN ID </strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        </div>
+        </div>');
+        redirect('Dashboard_otkp/jadwal_ujian');
+    }
+
 
     public function akun_peserta()
     {
 
-        $isi['akun_peserta'] = $this->Model_siswa->dataAkunPesertaAKL();
+        $isi['akun_peserta'] = $this->Model_siswa->dataAkunPesertaOTKP();
 
-        $isi['content'] = 'AKL/Ujian/tampilan_akun_peserta';
-        $this->load->view('AKL/templates/header');
-        $this->load->view('AKL/tampilan_dashboard', $isi);
-        $this->load->view('AKL/templates/footer');
+        $isi['content'] = 'OTKP/Ujian/tampilan_akun_peserta';
+        $this->load->view('OTKP/templates/header');
+        $this->load->view('OTKP/tampilan_dashboard', $isi);
+        $this->load->view('OTKP/templates/footer');
     }
 
     public function logout()

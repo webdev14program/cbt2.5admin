@@ -91,7 +91,7 @@ class Model_siswa extends CI_Model
 
     public function dataSiswaBDP()
     {
-        $sql = "SELECT a_siswa.id,a_siswa.no_peserta,a_siswa.nama_siswa,a_jurusan.jurusan,a_kelas.kelas,a_siswa.username,a_siswa.password,a_siswa.level,a_siswa.status FROM `a_siswa`
+        $sql = "SELECT a_siswa.id,a_siswa.nama_siswa,a_jurusan.jurusan,a_kelas.kelas,a_siswa.username,a_siswa.password,a_siswa.level,a_siswa.status FROM `a_siswa`
                 INNER JOIN a_kelas
                 ON a_siswa.kelas=a_kelas.id
                 INNER JOIN a_jurusan
@@ -103,7 +103,7 @@ class Model_siswa extends CI_Model
 
     public function dataSiswaOTKP()
     {
-        $sql = "SELECT a_siswa.id,a_siswa.no_peserta,a_siswa.nama_siswa,a_jurusan.jurusan,a_kelas.kelas,a_siswa.username,a_siswa.password,a_siswa.level,a_siswa.status FROM `a_siswa`
+        $sql = "SELECT a_siswa.id,a_siswa.nama_siswa,a_jurusan.jurusan,a_kelas.kelas,a_siswa.username,a_siswa.password,a_siswa.level,a_siswa.status FROM `a_siswa`
                 INNER JOIN a_kelas
                 ON a_siswa.kelas=a_kelas.id
                 INNER JOIN a_jurusan
@@ -115,12 +115,12 @@ class Model_siswa extends CI_Model
 
     public function dataSiswaTKJ()
     {
-        $sql = "SELECT * FROM `a_siswa`
+        $sql = "SELECT a_siswa.id,a_siswa.nama_siswa,a_jurusan.jurusan,a_kelas.kelas,a_siswa.username,a_siswa.password,a_siswa.level,a_siswa.status FROM `a_siswa`
                 INNER JOIN a_kelas
-                on a_siswa.kelas=a_kelas.id
+                ON a_siswa.kelas=a_kelas.id
                 INNER JOIN a_jurusan
                 ON a_siswa.jurusan=a_jurusan.kode
-                WHERE a_siswa.jurusan LIKE '%tkj%';";
+                WHERE a_siswa.jurusan='TKJ' AND a_siswa.status='AKTIF';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -149,6 +149,34 @@ class Model_siswa extends CI_Model
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+    public function dataAkunPesertaBDP()
+    {
+        $sql = "SELECT a_kelas.id,a_kelas.kelas,a_jurusan.jurusan,COUNT(a_siswa.nama_siswa) AS jumlah_siswa FROM `a_siswa`
+                INNER JOIN a_kelas
+                ON a_siswa.kelas=a_kelas.id
+                INNER JOIN a_jurusan
+                ON a_kelas.kode=a_jurusan.kode
+                WHERE a_kelas.kode='BDP'
+                GROUP BY a_kelas.kelas;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function dataAkunPesertaOTKP()
+    {
+        $sql = "SELECT a_kelas.id,a_kelas.kelas,a_jurusan.jurusan,COUNT(a_siswa.nama_siswa) AS jumlah_siswa FROM `a_siswa`
+                INNER JOIN a_kelas
+                ON a_siswa.kelas=a_kelas.id
+                INNER JOIN a_jurusan
+                ON a_kelas.kode=a_jurusan.kode
+                WHERE a_kelas.kode='OTKP'
+                GROUP BY a_kelas.kelas;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+
 
 
 

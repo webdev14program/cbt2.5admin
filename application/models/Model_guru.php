@@ -14,7 +14,8 @@ class Model_guru extends CI_Model
     public function dataGuruTKJ()
     {
         $sql = "SELECT * FROM `a_guru`
-                WHERE jenis_guru='TKJ' OR jenis_guru='UMUM';";
+                WHERE jenis_guru='TKJ' OR jenis_guru='UMUM'
+                ORDER BY jenis_guru,id_guru ASC;";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -45,6 +46,8 @@ class Model_guru extends CI_Model
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+
 
     function simpan($data = array())
     {

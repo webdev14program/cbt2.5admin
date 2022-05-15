@@ -16,7 +16,8 @@ class Model_jurusan extends CI_Model
     }
     public function dataJurusan()
     {
-        $sql = "SELECT * FROM `a_jurusan`";
+        $sql = "SELECT * FROM `a_jurusan`
+WHERE a_jurusan.kode='AKL' OR  a_jurusan.kode='BDP' OR a_jurusan.kode='OTKP' OR a_jurusan.kode='TKJ';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

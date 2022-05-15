@@ -35,6 +35,14 @@ class Model_kelas extends CI_Model
         return $query->row()->otkp;
     }
 
+    public function countKelasTKJ()
+    {
+        $sql = "SELECT count(*) AS tkj FROM `a_kelas`
+                WHERE kode='TKJ';";
+        $query = $this->db->query($sql);
+        return $query->row()->tkj;
+    }
+
     public function dataKelas()
     {
         $sql = "SELECT *, a_kelas.id AS id_kelas FROM `a_kelas`
@@ -83,6 +91,8 @@ class Model_kelas extends CI_Model
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+
 
     public function findByIDdataKelas($id_kelas)
     {

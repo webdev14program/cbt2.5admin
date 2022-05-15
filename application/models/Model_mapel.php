@@ -45,8 +45,10 @@ class Model_mapel extends CI_Model
 
     public function countMapelTKJ()
     {
-        $sql = "SELECT COUNT(*) AS mapel_tkj FROM `cbtonline_course`
-                WHERE format='singleactivity' AND fullname LIKE '%TKJ%'";
+        $sql = "SELECT COUNT(*) AS mapel_tkj FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_mapel.jurusan='TKJ';";
         $query = $this->db->query($sql);
         return $query->row()->mapel_tkj;
     }

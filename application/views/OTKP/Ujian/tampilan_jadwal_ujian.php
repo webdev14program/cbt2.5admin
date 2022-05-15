@@ -33,6 +33,7 @@
                                  <th>Tanggal Ujian</th>
                                  <th>Waktu Ujian</th>
                                  <th>durasi ujian</th>
+                                 <th>aksi</th>
                              </tr>
                          </thead>
                          <tbody>
@@ -48,6 +49,12 @@
                                      <td><?= $row['tanggal_ujian'] ?></td>
                                      <td><?= $row['waktu_mulai'] ?> - <?= $row['waktu_akir'] ?></td>
                                      <td><?= $row['durasi_ujian'] ?> Menit</td>
+                                     <td>
+                                         <h5 class="text-center">
+                                             <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_otkp/edit_jadwal_ujian/<?= $row['id_jadwal_ujian'] ?>"><i class="fas fa-edit"></i></i></a>
+                                             <a class="btn btn-danger btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_otkp/hapus_jadwal_ujian/<?= $row['id_jadwal_ujian'] ?>"><i class="fas fa-trash"></i></i></a>
+                                         </h5>
+                                     </td>
 
                              </tr>
                          <?php } ?>

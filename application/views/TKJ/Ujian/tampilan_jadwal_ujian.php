@@ -52,8 +52,8 @@
                                      <td><?= $row['durasi_ujian'] ?> Menit</td>
                                      <td>
                                          <h5 class="text-center">
-                                             <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_akl/edit_jadwal_ujian/<?= $row['id_jadwal_ujian'] ?>"><i class="fas fa-edit"></i></i></a>
-                                             <a class="btn btn-danger btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_akl/hapus_jadwal_ujian/<?= $row['id_jadwal_ujian'] ?>"><i class="fas fa-trash"></i></i></a>
+                                             <a class="btn btn-success btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_tkj/edit_jadwal_ujian/<?= $row['id_jadwal_ujian'] ?>"><i class="fas fa-edit"></i></i></a>
+                                             <a class="btn btn-danger btn-sm  text-uppercase" href="<?= base_url() ?>Dashboard_tkj/hapus_jadwal_ujian/<?= $row['id_jadwal_ujian'] ?>"><i class="fas fa-trash"></i></i></a>
                                          </h5>
                                      </td>
 
@@ -77,7 +77,7 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form action="<?= base_url() ?>Dashboard_akl/simpan_jadwal" method="POST">
+                 <form action="<?= base_url() ?>Dashboard_tkj/simpan_jadwal" method="POST">
                      <div class="form-group">
                          <label>Bank Soal</label>
                          <select class="form-control" name="id_bank_soal">
