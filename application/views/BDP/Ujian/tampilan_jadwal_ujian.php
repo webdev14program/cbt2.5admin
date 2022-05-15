@@ -69,7 +69,7 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form action="<?= base_url() ?>Dashboard_bdp/simpan_jadwal" method="POST">
+                 <form action="<?= base_url() ?>Dashboard_akl/simpan_jadwal" method="POST">
                      <div class="form-group">
                          <label>Bank Soal</label>
                          <select class="form-control" name="id_bank_soal">

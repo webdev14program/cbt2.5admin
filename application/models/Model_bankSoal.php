@@ -21,20 +21,66 @@ class Model_bankSoal extends CI_Model
         return $query->row()->bank_soal_akl;
     }
 
+    public function countBankSoalBDP()
+    {
+        $sql = "SELECT COUNT(*) AS bank_soal_bdp FROM `bank_soal`
+                INNER JOIN a_mapel
+                ON a_mapel.id_mapel=bank_soal.id_mapel
+                WHERE bank_soal.status='AKTIF' AND a_mapel.jurusan='BDP';";
+        $query = $this->db->query($sql);
+        return $query->row()->bank_soal_bdp;
+    }
+
+    public function countBankSoalOTKP()
+    {
+        $sql = "SELECT COUNT(*) AS bank_soal_otkp FROM `bank_soal`
+                INNER JOIN a_mapel
+                ON a_mapel.id_mapel=bank_soal.id_mapel
+                WHERE bank_soal.status='AKTIF' AND a_mapel.jurusan='OTKP';";
+        $query = $this->db->query($sql);
+        return $query->row()->bank_soal_otkp;
+    }
+
     public function countJadwalAKL()
     {
-        $sql = "SELECT COUNT(*) AS jadwal_ujian
-                FROM `jadwal_ujian`
+        $sql = "SELECT COUNT(*) AS jadwal_ujian FROM `jadwal_ujian`
                 INNER JOIN bank_soal
                 ON jadwal_ujian.id_bank_soal=bank_soal.id_bank_soal
-                INNER JOIN a_mapel
-                ON bank_soal.id_mapel=a_mapel.id_mapel
                 INNER JOIN a_guru
                 ON bank_soal.id_guru=a_guru.id_guru
-                INNER JOIN a_kelas
-                ON jadwal_ujian.id_kelas=a_kelas.id
-                WHERE a_guru.jenis_guru='AKL'
-                ORDER BY jadwal_ujian.tgl_awal ASC;";
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                WHERE a_mapel.jurusan='AKL';";
+        $query = $this->db->query($sql);
+        return $query->row()->jadwal_ujian;
+    }
+
+    public function countJadwalBDP()
+    {
+        $sql = "SELECT COUNT(*) AS jadwal_ujian FROM `jadwal_ujian`
+                INNER JOIN bank_soal
+                ON jadwal_ujian.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                WHERE a_mapel.jurusan='BDP';";
+        $query = $this->db->query($sql);
+        return $query->row()->jadwal_ujian;
+    }
+
+
+
+    public function countJadwalOTKP()
+    {
+        $sql = "SELECT COUNT(*) AS jadwal_ujian FROM `jadwal_ujian`
+                INNER JOIN bank_soal
+                ON jadwal_ujian.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                WHERE a_mapel.jurusan='OTKP';";
         $query = $this->db->query($sql);
         return $query->row()->jadwal_ujian;
     }
@@ -58,6 +104,30 @@ class Model_bankSoal extends CI_Model
                 INNER JOIN a_guru
                 ON a_guru.id_guru=bank_soal.id_guru
                 WHERE a_mapel.jurusan='AKL';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    function dataBankSoalBDP()
+    {
+        $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_guru.nama_guru,a_mapel.nama_mapel,bank_soal.status,bank_soal.time FROM `bank_soal`
+                INNER JOIN a_mapel
+                ON a_mapel.id_mapel=bank_soal.id_mapel
+                INNER JOIN a_guru
+                ON a_guru.id_guru=bank_soal.id_guru
+                WHERE a_mapel.jurusan='BDP';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    function dataBankSoalOTKP()
+    {
+        $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_guru.nama_guru,a_mapel.nama_mapel,bank_soal.status,bank_soal.time FROM `bank_soal`
+                INNER JOIN a_mapel
+                ON a_mapel.id_mapel=bank_soal.id_mapel
+                INNER JOIN a_guru
+                ON a_guru.id_guru=bank_soal.id_guru
+                WHERE a_mapel.jurusan='OTKP';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -94,6 +164,30 @@ class Model_bankSoal extends CI_Model
                 INNER JOIN a_guru
                 ON bank_soal.id_guru=a_guru.id_guru
                 WHERE bank_soal.status='AKTIF' AND a_mapel.jurusan='AKL';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    function dataBankSoalAktifBDP()
+    {
+        $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_mapel.nama_mapel,a_guru.nama_guru,bank_soal.status,bank_soal.time FROM `bank_soal`
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                WHERE bank_soal.status='AKTIF' AND a_mapel.jurusan='BDP';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    function dataBankSoalAktifOTKP()
+    {
+        $sql = "SELECT bank_soal.id_bank_soal,bank_soal.nama_ujian,a_mapel.nama_mapel,a_guru.nama_guru,bank_soal.status,bank_soal.time FROM `bank_soal`
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                WHERE bank_soal.status='AKTIF' AND a_mapel.jurusan='OTKP';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -156,7 +250,45 @@ class Model_bankSoal extends CI_Model
                 ON bank_soal.id_guru=a_guru.id_guru
                 INNER JOIN a_kelas
                 ON jadwal_ujian.id_kelas=a_kelas.id
-                WHERE a_guru.jenis_guru='AKL'
+                WHERE a_kelas.kelas LIKE '%AKL%'
+                ORDER BY jadwal_ujian.tgl_awal ASC;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    function data_jadwalUjianBDP()
+    {
+        $sql = "SELECT a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+                concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
+                FROM `jadwal_ujian`
+                INNER JOIN bank_soal
+                ON jadwal_ujian.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_kelas
+                ON jadwal_ujian.id_kelas=a_kelas.id
+                WHERE a_kelas.kelas LIKE '%BDP%'
+                ORDER BY jadwal_ujian.tgl_awal ASC;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    function data_jadwalUjianOTKP()
+    {
+        $sql = "SELECT a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+                concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
+                FROM `jadwal_ujian`
+                INNER JOIN bank_soal
+                ON jadwal_ujian.id_bank_soal=bank_soal.id_bank_soal
+                INNER JOIN a_mapel
+                ON bank_soal.id_mapel=a_mapel.id_mapel
+                INNER JOIN a_guru
+                ON bank_soal.id_guru=a_guru.id_guru
+                INNER JOIN a_kelas
+                ON jadwal_ujian.id_kelas=a_kelas.id
+                WHERE a_kelas.kelas LIKE '%OTKP%'
                 ORDER BY jadwal_ujian.tgl_awal ASC;";
         $query = $this->db->query($sql);
         return $query->result_array();

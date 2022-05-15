@@ -28,6 +28,24 @@ class Model_guru extends CI_Model
         return $query->result_array();
     }
 
+    public function dataGuruBDP()
+    {
+        $sql = "SELECT * FROM `a_guru`
+                WHERE jenis_guru='BDP' OR jenis_guru='UMUM'
+                ORDER BY jenis_guru,id_guru ASC;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function dataGuruOTKP()
+    {
+        $sql = "SELECT * FROM `a_guru`
+                WHERE jenis_guru='OTKP' OR jenis_guru='UMUM'
+                ORDER BY jenis_guru,id_guru ASC;";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
     function simpan($data = array())
     {
         $jumlah = count($data);

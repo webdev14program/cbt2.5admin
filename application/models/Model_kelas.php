@@ -19,6 +19,22 @@ class Model_kelas extends CI_Model
         return $query->row()->akl;
     }
 
+    public function countKelasBDP()
+    {
+        $sql = "SELECT count(*) AS bdp FROM `a_kelas`
+                WHERE kode='BDP';";
+        $query = $this->db->query($sql);
+        return $query->row()->bdp;
+    }
+
+    public function countKelasOTKP()
+    {
+        $sql = "SELECT count(*) AS otkp FROM `a_kelas`
+                WHERE kode='OTKP';";
+        $query = $this->db->query($sql);
+        return $query->row()->otkp;
+    }
+
     public function dataKelas()
     {
         $sql = "SELECT *, a_kelas.id AS id_kelas FROM `a_kelas`
@@ -48,14 +64,22 @@ class Model_kelas extends CI_Model
         return $query->result_array();
     }
 
-
-
     public function dataKelasBDP()
     {
         $sql = "SELECT *, a_kelas.id AS id_kelas FROM `a_kelas`
                 INNER JOIN a_jurusan
                 ON a_kelas.kode=a_jurusan.kode
-                WHERE a_kelas.kelas LIKE '%bdp%';";
+                WHERE a_kelas.kelas LIKE '%BDP%';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function dataKelasOTKP()
+    {
+        $sql = "SELECT *, a_kelas.id AS id_kelas FROM `a_kelas`
+                INNER JOIN a_jurusan
+                ON a_kelas.kode=a_jurusan.kode
+                WHERE a_kelas.kelas LIKE '%OTKP%';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

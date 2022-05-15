@@ -25,16 +25,20 @@ class Model_mapel extends CI_Model
 
     public function countMapelBDP()
     {
-        $sql = "SELECT COUNT(*) AS mapel_bdp FROM `cbtonline_course`
-                WHERE format='singleactivity' AND fullname LIKE '%BDP%'";
+        $sql = "SELECT COUNT(*) AS mapel_bdp FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_mapel.jurusan='BDP';";
         $query = $this->db->query($sql);
         return $query->row()->mapel_bdp;
     }
 
     public function countMapelOTKP()
     {
-        $sql = "SELECT COUNT(*) AS mapel_otkp FROM `cbtonline_course`
-                WHERE format='singleactivity' AND fullname LIKE '%OTKP%'";
+        $sql = "SELECT COUNT(*) AS mapel_otkp FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_mapel.jurusan='OTKP';";
         $query = $this->db->query($sql);
         return $query->row()->mapel_otkp;
     }
@@ -74,6 +78,26 @@ class Model_mapel extends CI_Model
                 INNER JOIN a_jurusan
                 ON a_mapel.jurusan=a_jurusan.kode
                 WHERE a_mapel.jurusan='AKL';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function dataMapelBDP()
+    {
+        $sql = "SELECT a_mapel.*,a_jurusan.jurusan AS nama_jurusan FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_mapel.jurusan='BDP';";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function dataMapelOTKP()
+    {
+        $sql = "SELECT a_mapel.*,a_jurusan.jurusan AS nama_jurusan FROM `a_mapel`
+                INNER JOIN a_jurusan
+                ON a_mapel.jurusan=a_jurusan.kode
+                WHERE a_mapel.jurusan='OTKP';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

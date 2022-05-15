@@ -37,10 +37,12 @@ class Model_siswa extends CI_Model
     public function countBDP()
     {
         $sql = "SELECT COUNT(*) AS bdp FROM `a_siswa`
-                WHERE jurusan LIKE '%bdp%';";
+                WHERE jurusan LIKE '%BDP%';";
         $query = $this->db->query($sql);
         return $query->row()->bdp;
     }
+
+
 
     public function dataSiswa()
     {
@@ -89,24 +91,24 @@ class Model_siswa extends CI_Model
 
     public function dataSiswaBDP()
     {
-        $sql = "SELECT * FROM `a_siswa`
+        $sql = "SELECT a_siswa.id,a_siswa.no_peserta,a_siswa.nama_siswa,a_jurusan.jurusan,a_kelas.kelas,a_siswa.username,a_siswa.password,a_siswa.level,a_siswa.status FROM `a_siswa`
                 INNER JOIN a_kelas
-                on a_siswa.kelas=a_kelas.id
+                ON a_siswa.kelas=a_kelas.id
                 INNER JOIN a_jurusan
                 ON a_siswa.jurusan=a_jurusan.kode
-                WHERE a_siswa.jurusan LIKE '%bdp%';";
+                WHERE a_siswa.jurusan='BDP' AND a_siswa.status='AKTIF';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
     public function dataSiswaOTKP()
     {
-        $sql = "SELECT * FROM `a_siswa`
+        $sql = "SELECT a_siswa.id,a_siswa.no_peserta,a_siswa.nama_siswa,a_jurusan.jurusan,a_kelas.kelas,a_siswa.username,a_siswa.password,a_siswa.level,a_siswa.status FROM `a_siswa`
                 INNER JOIN a_kelas
-                on a_siswa.kelas=a_kelas.id
+                ON a_siswa.kelas=a_kelas.id
                 INNER JOIN a_jurusan
                 ON a_siswa.jurusan=a_jurusan.kode
-                WHERE a_siswa.jurusan LIKE '%otkp%';";
+                WHERE a_siswa.jurusan='OTKP' AND a_siswa.status='AKTIF';";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
