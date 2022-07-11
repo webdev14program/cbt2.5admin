@@ -1328,7 +1328,7 @@ CREATE TABLE `jadwal_ujian` (
   `tgl_awal` date NOT NULL,
   `tgl_akhir` date NOT NULL,
   `waktu_mulai` time NOT NULL,
-  `waktu_akir` time NOT NULL,
+  `waktu_akhir` time NOT NULL,
   `durasi_ujian` int(8) NOT NULL,
   `update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1337,7 +1337,7 @@ CREATE TABLE `jadwal_ujian` (
 -- Dumping data for table `jadwal_ujian`
 --
 
-INSERT INTO `jadwal_ujian` (`id_jadwal_ujian`, `id_bank_soal`, `id_kelas`, `tgl_awal`, `tgl_akhir`, `waktu_mulai`, `waktu_akir`, `durasi_ujian`, `update`) VALUES
+INSERT INTO `jadwal_ujian` (`id_jadwal_ujian`, `id_bank_soal`, `id_kelas`, `tgl_awal`, `tgl_akhir`, `waktu_mulai`, `waktu_akhir`, `durasi_ujian`, `update`) VALUES
 (193740, 6553733, 1010705, '2022-05-15', '2022-05-15', '07:00:00', '08:00:00', 60, '2022-05-15 13:31:28'),
 (197766, 2515678, 1001201, '2022-05-15', '2022-05-15', '07:00:00', '08:00:00', 60, '2022-05-15 13:56:18'),
 (259734, 6553733, 1011701, '2022-05-15', '2022-05-15', '07:00:00', '08:00:00', 60, '2022-05-15 13:32:45'),

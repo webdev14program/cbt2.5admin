@@ -276,7 +276,7 @@ class Dashboard_akl extends CI_Controller
         $tgl_awal = $this->input->post('tgl_awal');
         $tgl_akhir = $this->input->post('tgl_akhir');
         $waktu_mulai = $this->input->post('waktu_mulai');
-        $waktu_akir = $this->input->post('waktu_akir');
+        $waktu_akhir = $this->input->post('waktu_akhir');
         $durasi_ujian = $this->input->post('durasi_ujian');
 
         $data = array(
@@ -286,7 +286,7 @@ class Dashboard_akl extends CI_Controller
             'tgl_awal' => $tgl_awal,
             'tgl_akhir' => $tgl_akhir,
             'waktu_mulai' => $waktu_mulai,
-            'waktu_akir' => $waktu_akir,
+            'waktu_akhir' => $waktu_akhir,
             'durasi_ujian' => $durasi_ujian
         );
 

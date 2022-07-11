@@ -270,7 +270,7 @@ class Model_bankSoal extends CI_Model
 
     function data_jadwalUjian()
     {
-        $sql = "SELECT a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+        $sql = "SELECT a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akhir,jadwal_ujian.durasi_ujian,
                 concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
                 FROM `jadwal_ujian`
                 INNER JOIN bank_soal
@@ -287,7 +287,7 @@ class Model_bankSoal extends CI_Model
     }
     function data_jadwalUjianAKL()
     {
-        $sql = "SELECT jadwal_ujian.id_jadwal_ujian,a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+        $sql = "SELECT jadwal_ujian.id_jadwal_ujian,a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akhir,jadwal_ujian.durasi_ujian,
                 concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
                 FROM `jadwal_ujian`
                 INNER JOIN bank_soal
@@ -306,7 +306,7 @@ class Model_bankSoal extends CI_Model
 
     function data_jadwalUjianBDP()
     {
-        $sql = "SELECT jadwal_ujian.id_jadwal_ujian,a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+        $sql = "SELECT jadwal_ujian.id_jadwal_ujian,a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akhir,jadwal_ujian.durasi_ujian,
                 concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
                 FROM `jadwal_ujian`
                 INNER JOIN bank_soal
@@ -325,7 +325,7 @@ class Model_bankSoal extends CI_Model
 
     function data_jadwalUjianOTKP()
     {
-        $sql = "SELECT jadwal_ujian.id_jadwal_ujian,a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+        $sql = "SELECT jadwal_ujian.id_jadwal_ujian,a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akhir,jadwal_ujian.durasi_ujian,
                 concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
                 FROM `jadwal_ujian`
                 INNER JOIN bank_soal
@@ -344,7 +344,7 @@ class Model_bankSoal extends CI_Model
 
     function data_jadwalUjianTKJ()
     {
-        $sql = "SELECT jadwal_ujian.id_jadwal_ujian,a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akir,jadwal_ujian.durasi_ujian,
+        $sql = "SELECT jadwal_ujian.id_jadwal_ujian,a_guru.nama_guru,a_mapel.nama_mapel, a_kelas.kelas,jadwal_ujian.tgl_awal,jadwal_ujian.waktu_mulai,jadwal_ujian.waktu_akhir,jadwal_ujian.durasi_ujian,
                 concat(dayname(jadwal_ujian.tgl_awal),', ' ,day(jadwal_ujian.tgl_awal),' ',monthname(jadwal_ujian.tgl_awal),' ',year(jadwal_ujian.tgl_awal)) AS tanggal_ujian
                 FROM `jadwal_ujian`
                 INNER JOIN bank_soal

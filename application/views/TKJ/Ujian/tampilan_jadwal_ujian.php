@@ -48,7 +48,7 @@
                                      <td><?= $row['nama_mapel']; ?></td>
                                      <td><?= $row['kelas']; ?></td>
                                      <td><?= $row['tanggal_ujian'] ?></td>
-                                     <td><?= $row['waktu_mulai'] ?> - <?= $row['waktu_akir'] ?></td>
+                                     <td><?= $row['waktu_mulai'] ?> - <?= $row['waktu_akhir'] ?></td>
                                      <td><?= $row['durasi_ujian'] ?> Menit</td>
                                      <td>
                                          <h5 class="text-center">
@@ -120,7 +120,7 @@
                          <div class="col">
                              <div class="form-group">
                                  <label>Waktu Selesai</label>
-                                 <input type="time" class="form-control" name="waktu_akir">
+                                 <input type="time" class="form-control" name="waktu_akhir">
                              </div>
                          </div>
                          <div class="col">
